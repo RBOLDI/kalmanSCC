@@ -1,0 +1,24 @@
+{
+    "Header": {
+        "Comment": "All values are metric (mm)",
+        "CreationDate": "2020-01-23T13:45:54Z",
+        "GenerationSoftware": {
+            "Application": "EAGLE",
+            "Vendor": "Autodesk",
+            "Version": "9.5.2"
+        },
+        "Part": "Single"
+    },
+    "Overall": {
+        "BoardThickness": 1.57,
+        "LayerNumber": 2,
+        "Name": {
+            "ProjectId": "Beunboard_rev1"
+        },
+        "Owner": "Rowan Bolding <rowan.bolding@hva.nl>",
+        "Size": {
+            "X": 68.56,
+            "Y": 84.76
+        }
+    }
+}
