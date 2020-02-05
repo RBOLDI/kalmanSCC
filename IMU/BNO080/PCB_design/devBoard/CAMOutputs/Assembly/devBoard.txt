@@ -1,0 +1,28 @@
+Partlist exported from C:/Users/Rowan/OneDrive/Bureaublad/kalmanSCC/IMU/BNO080/PCB_design/devBoard/devBoard.sch at 1/30/2020 3:41 PM
+
+Qty Value                      Device                     Package          Parts                             Description                         MF MPN OC_FARNELL OC_NEWARK POPULARITY SPICEPREFIX
+1                              TAC_SWITCHPTH              TACTILE-PTH      S2                                Momentary Switch                                                                      
+3   0.1u                       C-EUC0805                  C0805            C1, C2, C3                        CAPACITOR, European symbol                                      88         C          
+4   100nF                      C-EUC0805                  C0805            C7, C23, C28, C30                 CAPACITOR, European symbol                                                            
+1   100p                       CAP0805                    0805             C12                                                                                                                     
+1   100u                       DR74                       DR73/74          L2                                                                                                                      
+8   10K                        R-EU_R0805                 R0805            R1, R2, R3, R4, R9, R10, R11, R12 RESISTOR, European symbol                                                             
+4   10u_25V                    CAP1206                    1206             C6, C8, C9, C13                                                                                                         
+1   120                        R-EU_R0805                 R0805            R13                               RESISTOR, European symbol                                                             
+1   150k                       RES0805                    0805             R5                                                                                                                      
+2   1K                         R-EU_R0805                 R0805            R14, R15                          RESISTOR, European symbol                                                             
+1   1R                         RES0805                    0805             R6                                                                                                                      
+2   22p                        C-EUC0805                  C0805            C4, C5                            CAPACITOR, European symbol                                      88         C          
+1   350mA                      RESETTABLE_FUSE1812        1812L            F1                                                                                                                      
+2   3u3_100V                   CAP1206                    1206             C10, C11                                                                                                                
+1   ABS07                      ABS07                      ABS07            Y1                                                                                                                      
+1   ADM2484E                   ADM2484E                   ADM2487          ADM1                                                                                                                    
+1   ADUM1281                   ADUM1281                   SOIC8            U$6                                                                                                                     
+1   AVR-ISP-6ML                AVR-ISP-6ML                ML6              JP1                               AVR ISP-6 Serial Programming Header                                                   
+1   BNO080                     BNO080                     LGA-28           U1                                                                                                                      
+3   CON_3,5MM4_SIDE            CON_3,5MM4_SIDE            CON_3,5MM4_SIDE  SERIEEL, SERIEEL1, SERIEEL2                                                                                             
+2   CON_3.81MM2_SIDE           CON_3.81MM2_SIDE           CON_3.81MM2_SIDE POWER1, POWER2                                                                                                          
+1   DFLS1100                   DFLS1100                   POWERDI_123      D1                                                                                                                      
+1   LTC3630EMSE                LTC3630EMSE                MSE16(12)        U3                                                                                                                      
+1   NAVSPARK_MININAVSPARK_MINI NAVSPARK_MININAVSPARK_MINI NAVSPARK_MINI    U4                                                                                                                      
+1   XMEGA16A4A                 XMEGA16A4A                 TQFP44           IC1                               MICROCONTROLLER                            unknown    unknown   3                     

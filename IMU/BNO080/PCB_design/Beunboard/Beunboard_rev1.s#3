@@ -8855,18 +8855,6 @@ general purpose rectifier, 1 A</description>
 <wire x1="93.98" y1="142.24" x2="93.98" y2="147.32" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="+3V19" gate="1" pin="+5V"/>
-<wire x1="251.38" y1="104.42" x2="251.38" y2="106.96" width="0.1524" layer="91"/>
-<pinref part="C27" gate="G$1" pin="1"/>
-<wire x1="215.82" y1="104.42" x2="228.52" y2="104.42" width="0.1524" layer="91"/>
-<pinref part="C26" gate="G$1" pin="1"/>
-<wire x1="238.68" y1="104.42" x2="228.52" y2="104.42" width="0.1524" layer="91"/>
-<junction x="228.52" y="104.42"/>
-<wire x1="251.38" y1="104.42" x2="238.68" y2="104.42" width="0.1524" layer="91"/>
-<junction x="238.68" y="104.42"/>
-<pinref part="TSR1-2433" gate="G$1" pin="VO"/>
-</segment>
-<segment>
 <pinref part="U1" gate="G$1" pin="3V3"/>
 <wire x1="20.32" y1="149.86" x2="10.16" y2="149.86" width="0.1524" layer="91"/>
 <pinref part="+3V1" gate="G$1" pin="+3V3"/>
@@ -9003,6 +8991,22 @@ general purpose rectifier, 1 A</description>
 <wire x1="20.32" y1="154.94" x2="15.16" y2="154.94" width="0.1524" layer="91"/>
 <pinref part="+3V5" gate="1" pin="+5V"/>
 <wire x1="15.16" y1="154.94" x2="15.16" y2="157.76" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="KANKER" class="0">
+<segment>
+<pinref part="TSR1-2433" gate="G$1" pin="VO"/>
+<wire x1="215.82" y1="104.42" x2="228.52" y2="104.42" width="0.1524" layer="91"/>
+<wire x1="228.52" y1="104.42" x2="238.68" y2="104.42" width="0.1524" layer="91"/>
+<wire x1="238.68" y1="104.42" x2="251.46" y2="104.42" width="0.1524" layer="91"/>
+<wire x1="251.46" y1="104.42" x2="251.46" y2="104.14" width="0.1524" layer="91"/>
+<pinref part="+3V19" gate="1" pin="+5V"/>
+<wire x1="251.46" y1="104.42" x2="251.46" y2="106.96" width="0.1524" layer="91"/>
+<wire x1="251.46" y1="106.96" x2="251.38" y2="106.96" width="0.1524" layer="91"/>
+<pinref part="C26" gate="G$1" pin="1"/>
+<junction x="238.68" y="104.42"/>
+<pinref part="C27" gate="G$1" pin="1"/>
+<junction x="228.52" y="104.42"/>
 </segment>
 </net>
 </nets>
