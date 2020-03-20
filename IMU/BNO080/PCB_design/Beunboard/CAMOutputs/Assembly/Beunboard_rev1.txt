@@ -1,0 +1,14 @@
+Partlist exported from C:/Users/Rowan/OneDrive/Bureaublad/kalmanSCC/IMU/BNO080/PCB_design/Beunboard/Beunboard_rev1.sch at 1/23/2020 2:45 PM
+
+Qty Value                          Device                         Package                     Parts          Description                       SPICEPREFIX
+1                                  TSR1-2433                      TSR1-2433                   TSR1-2433                                                   
+1   0.2 Ohm                        R-EU_R0805                     R0805                       R7             RESISTOR, European symbol         R          
+2   1 Ohm                          R-EU_R0805                     R0805                       R22, R23       RESISTOR, European symbol         R          
+2   10uF                           C-EUC1206                      C1206                       C13, C27       CAPACITOR, European symbol        C          
+1   1N4004                         1N4004                         DO41-10                     D1             DIODE                                        
+2   22uF                           C-EUC1206                      C1206                       C24, C26       CAPACITOR, European symbol        C          
+1   350mA                          PTCFUSE-1206                   R1206                       F1             PTC fuses, resettable thermistors            
+2   CON_3.81MM2_SIDE               CON_3.81MM2_SIDE               CON_3.81MM2_SIDE            POWER1, POWER2                                              
+1   NAVSPARK_MININAVSPARK_MINI     NAVSPARK_MININAVSPARK_MINI     NAVSPARK_MINI               U3                                                          
+1   SPARKFUN_BNO080SPARKFUN_BNO080 SPARKFUN_BNO080SPARKFUN_BNO080 SPARKFUN_BNO080             U2                                                          
+1   XMEGABOARD-REV1.00-20150419DIP XMEGABOARD-REV1.00-20150419DIP XMEGABOARD-REV1.00-20150419 U1                                                          

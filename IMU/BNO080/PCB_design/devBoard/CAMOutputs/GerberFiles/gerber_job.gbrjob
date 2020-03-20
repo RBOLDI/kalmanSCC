@@ -1,0 +1,24 @@
+{
+    "Header": {
+        "Comment": "All values are metric (mm)",
+        "CreationDate": "2020-01-30T14:41:01Z",
+        "GenerationSoftware": {
+            "Application": "EAGLE",
+            "Vendor": "Autodesk",
+            "Version": "9.5.2"
+        },
+        "Part": "Single"
+    },
+    "Overall": {
+        "BoardThickness": 1.586,
+        "LayerNumber": 2,
+        "Name": {
+            "ProjectId": "devBoard"
+        },
+        "Owner": "Rowan Bolding <rowan.bolding@hva.nl>",
+        "Size": {
+            "X": 70.593988,
+            "Y": 49.8
+        }
+    }
+}
