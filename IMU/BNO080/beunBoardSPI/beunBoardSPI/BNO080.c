@@ -9,14 +9,22 @@
 #include "spi.h"
 #include <avr/io.h>
 
+uint8_t BNO080mode;
+
 uint8_t shtpHeader[4]; //Each packet has a header of 4 bytes
 uint8_t shtpData[MAX_PACKET_SIZE];
 uint8_t sequenceNumber[6] = {0, 0, 0, 0, 0, 0}; //There are 6 com channels. Each channel has its own seqnum
+uint8_t commandSequenceNumber = 0;				//Commands have a seqNum as well. These are inside command packet, the header uses its own seqNum per channel
+uint8_t newDataReport = 0;
+
 	
 //These are the raw sensor values (without Q applied) pulled from the user requested Input Report
 uint32_t timeStamp;
 uint16_t rawAccelX, rawAccelY, rawAccelZ, accelAccuracy;
 uint16_t rawLinAccelX, rawLinAccelY, rawLinAccelZ, accelLinAccuracy;
+uint16_t rawGyroX, rawGyroY, rawGyroZ, gyroAccuracy;
+uint16_t rawMagX , rawMagY , rawMagZ, magAccuracy;
+uint16_t rawQuatI, rawQuatJ, rawQuatK, rawQuatReal, rawQuatRadianAccuracy, quatAccuracy;
 uint8_t calibrationStatus;	
 
 //These Q values are defined in the datasheet but can also be obtained by querying the meta data records
@@ -59,10 +67,16 @@ uint8_t BNO080BeginSPI(void);
 uint8_t BNO080waitForSPI(void);
 uint8_t initBNO080(void);
 bool BNO080sendPacket(uint8_t channelNumber, uint8_t dataLength);
+void BNO080sendCommand(uint8_t command);
+void BNO080sendCalibrateCommand(uint8_t thingToCalibrate);
 void BNO080setFeatureCommand(uint8_t reportID, uint16_t timeBetweenReports, uint32_t specificConfig);
 bool BNO080receivePacket(void);
 void BNO080parseInputReport(void);
+void BNO080enableRotationVector(uint16_t timeBetweenReports);
+void BNO080enableAccelerometer(uint16_t timeBetweenReports);
 void BNO080enableLinearAccelerometer(uint16_t timeBetweenReports);
+void BNO080enableGyro(uint16_t timeBetweenReports);
+void BNO080enableMagnetometer(uint16_t timeBetweenReports);
 void BNO080parseCommandReport(void);
 bool BNO080dataAvailable(void);
 //acceleration components
@@ -71,6 +85,10 @@ float BNO080getLinAccelX(void);
 float BNO080getLinAccelY(void);
 float BNO080getLinAccelZ(void);
 uint8_t BNO080getLinAccelAccuracy(void);
+//Mode functions
+void BNO080getMode(void);
+//calibration functions
+void BNO080calibrationRoutine(void);
 
 void setBNO080pins(void){
 	//The INT pin: input, acvtive low
@@ -82,9 +100,9 @@ void setBNO080pins(void){
 	//The PSO/Wake pin: output, needs to be high to enable SPI-mode serves as wake operation, active low.
 	PORTA.DIRSET	= _WAKE;		//PIN6
 	PORTA.PIN6CTRL	= PORT_OPC_PULLUP_gc;
-
-
-
+	//The calibrationMode select pin, LOW = operation mode, HIHG = calibration mode
+	PORTA.DIRCLR	= _MODE;
+	PORTA.PIN3CTRL	= PORT_OPC_PULLDOWN_gc;
 }
 
 uint8_t BNO080BeginSPI(void){
@@ -156,6 +174,7 @@ uint8_t BNO080waitForSPI(void){
 
 uint8_t initBNO080(void){
 	if( BNO080BeginSPI()) {
+		BNO080getMode();
 		return 1;
 	}
 	else return 0;
@@ -191,6 +210,43 @@ bool BNO080sendPacket(uint8_t channelNumber, uint8_t dataLength){
 	}
 	PORTA.OUTSET = _WAKE;
 	return false;
+}
+
+void BNO080sendCommand(uint8_t command) {
+	shtpData[0] = SHTP_REPORT_COMMAND_REQUEST;	//Command Request
+	shtpData[1] = commandSequenceNumber++;		//Increments automatically each function call
+	shtpData[2] = command;						//Command
+	
+	//Transmit packet on channel 2, 12 bytes
+	BNO080sendPacket(CHANNEL_CONTROL, 12);
+}
+
+void BNO080sendCalibrateCommand(uint8_t thingToCalibrate) {
+	for (uint8_t i = 3; i < 12; i++) //Clear this section of the shtpData array
+		shtpData[i] = 0;
+		
+	if (thingToCalibrate == CALIBRATE_ACCEL)
+		shtpData[3] = 1;
+	else if (thingToCalibrate == CALIBRATE_GYRO)
+		shtpData[4] = 1;
+	else if (thingToCalibrate == CALIBRATE_MAG)
+		shtpData[5] = 1;
+	else if (thingToCalibrate == CALIBRATE_PLANAR_ACCEL)
+		shtpData[7] = 1;
+	else if (thingToCalibrate == CALIBRATE_ACCEL_GYRO_MAG)
+	{
+		shtpData[3] = 1;
+		shtpData[4] = 1;
+		shtpData[5] = 1;
+	}
+	else if (thingToCalibrate == CALIBRATE_STOP)
+		; //Do nothing, bytes are set to zero
+
+	//Make the internal calStatus variable non-zero (operation failed) so that user can test while we wait
+	calibrationStatus = 1;
+
+	//Using this shtpData packet, send a command
+	BNO080sendCommand(COMMAND_ME_CALIBRATE);
 }
 
 void BNO080setFeatureCommand(uint8_t reportID, uint16_t timeBetweenReports, uint32_t specificConfig){
@@ -293,6 +349,7 @@ void BNO080parseInputReport(void) {
 		rawAccelX = data1;
 		rawAccelY = data2;
 		rawAccelZ = data3;
+		newDataReport = SENSOR_REPORTID_ACCELEROMETER;
 	}
 	else if (shtpData[REPORT_ID_INDEX] == SENSOR_REPORTID_LINEAR_ACCELERATION)
 	{
@@ -301,13 +358,52 @@ void BNO080parseInputReport(void) {
 		rawLinAccelX = data1;
 		rawLinAccelY = data2;
 		rawLinAccelZ = data3;
+		newDataReport = SENSOR_REPORTID_LINEAR_ACCELERATION;
 	}
+	else if (shtpData[5] == SENSOR_REPORTID_GYROSCOPE)
+	{
+		gyroAccuracy = status;
+		rawGyroX = data1;
+		rawGyroY = data2;
+		rawGyroZ = data3;
+		newDataReport = SENSOR_REPORTID_GYROSCOPE;
+	}
+	else if (shtpData[5] == SENSOR_REPORTID_MAGNETIC_FIELD)
+	{
+		magAccuracy = status;
+		rawMagX = data1;
+		rawMagY = data2;
+		rawMagZ = data3;
+		newDataReport = SENSOR_REPORTID_MAGNETIC_FIELD;
+	}
+}
+
+void BNO080enableRotationVector(uint16_t timeBetweenReports){
+	printf("Set RotationVector! \n");
+	BNO080setFeatureCommand(SENSOR_REPORTID_ROTATION_VECTOR, timeBetweenReports, 0);
+}
+
+void BNO080enableAccelerometer(uint16_t timeBetweenReports){
+	printf("Set Accelerometer! \n");
+	BNO080setFeatureCommand(SENSOR_REPORTID_ACCELEROMETER, timeBetweenReports, 0);
 }
 
 void BNO080enableLinearAccelerometer(uint16_t timeBetweenReports){
 	printf("Set Linear Accelerometer! \n");
 	BNO080setFeatureCommand(SENSOR_REPORTID_LINEAR_ACCELERATION, timeBetweenReports, 0);
 }
+
+void BNO080enableGyro(uint16_t timeBetweenReports){
+	printf("Set Gyro! \n");
+	BNO080setFeatureCommand(SENSOR_REPORTID_GYROSCOPE, timeBetweenReports, 0);
+}
+
+void BNO080enableMagnetometer(uint16_t timeBetweenReports){
+	printf("Set Magnetometer! \n");
+	BNO080setFeatureCommand(SENSOR_REPORTID_MAGNETIC_FIELD, timeBetweenReports, 0);
+}
+
+
 
 void BNO080parseCommandReport(void) {
 	printf("Parse command report \n");
@@ -374,4 +470,20 @@ float BNO080getLinAccelZ(void)
 uint8_t BNO080getLinAccelAccuracy(void)
 {
 	return (accelLinAccuracy);
+}
+
+void BNO080getMode(void) {
+	//The calibrationMode select pin, LOW = operation mode, HIHG = calibration mode
+	if(CheckPinLevel(&PORTA, _MODE))
+		BNO080mode = CALIBRATION_MODE;
+	else
+		BNO080mode = OPERATION_MODE;
+}
+
+void BNO080calibrationRoutine(void) {
+	//TODO: functie die alle calibratie routines in een doet en vervolgens een saveNow command verstuurd.
+}
+
+void BNO080calibrateAccelerometer(void) {
+	//TODO: functie die de accelerometer waardes weergeeft en daarbij de nauwkeurigheid, het indrukken van een knop moet het einde zijn van deze functie
 }

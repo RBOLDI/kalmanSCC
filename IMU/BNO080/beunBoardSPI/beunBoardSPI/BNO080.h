@@ -24,20 +24,31 @@
 //All the ways we can configure or talk to the BNO080, figure 34, page 36 reference manual
 //These are used for low level communication with the sensor, on channel 2
 #define SHTP_REPORT_COMMAND_RESPONSE 0xF1
+#define SHTP_REPORT_COMMAND_REQUEST 0xF2
 #define SHTP_REPORT_PRODUCT_ID_RESPONSE 0xF8
 #define SHTP_REPORT_PRODUCT_ID_REQUEST 0xF9
 #define SHTP_REPORT_SET_FEATURE_COMMAND	0xFD
 #define SHTP_REPORT_BASE_TIMESTAMP		0xFB
 //All the different sensors and features we can get reports from
 //These are used when enabling a given sensor
-#define SENSOR_REPORTID_ACCELEROMETER 0x01
+#define SENSOR_REPORTID_ACCELEROMETER		0x01
+#define SENSOR_REPORTID_GYROSCOPE			0x02
+#define SENSOR_REPORTID_MAGNETIC_FIELD		0x03
 #define SENSOR_REPORTID_LINEAR_ACCELERATION 0x04
+#define SENSOR_REPORTID_ROTATION_VECTOR		0x05
 //Record IDs from figure 29, page 29 reference manual
 //These are used to read the metadata for each sensor type
 
 //Command IDs from section 6.4, page 42
 //These are used to calibrate, initialize, set orientation, tare etc the sensor
 #define COMMAND_ME_CALIBRATE 7
+
+#define CALIBRATE_ACCEL 0
+#define CALIBRATE_GYRO 1
+#define CALIBRATE_MAG 2
+#define CALIBRATE_PLANAR_ACCEL 3
+#define CALIBRATE_ACCEL_GYRO_MAG 4
+#define CALIBRATE_STOP 5
 
 #define MAX_PACKET_SIZE		128
 
@@ -46,18 +57,27 @@
 #define _INT	PIN0_bm
 #define _WAKE	PIN6_bm
 #define _RST	PIN1_bm
+#define _MODE	PIN3_bm
 
 #define HIGH	1
 #define LOW		0
+
+#define CALIBRATION_MODE	1
+#define OPERATION_MODE		0
 
 void setBNO080pins();
 uint8_t BNO080BeginSPI();
 uint8_t BNO080waitForSPI(void);
 uint8_t initBNO080();
 bool BNO080sendPacket(uint8_t channelNumber, uint8_t dataLength);
+void BNO080sendCalibrateCommand(uint8_t thingToCalibrate);
 void BNO080setFeatureCommand(uint8_t reportID, uint16_t timeBetweenReports, uint32_t specificConfig);
 bool BNO080receivePacket(void);
 void BNO080parseInputReport(void);
+void BNO080enableRotationVector(uint16_t timeBetweenReports);
+void BNO080enableAccelerometer(uint16_t timeBetweenReports);
+void BNO080enableGyro(uint16_t timeBetweenReports);
+void BNO080enableMagnetometer(uint16_t timeBetweenReports);
 void BNO080enableLinearAccelerometer(uint16_t timeBetweenReports);
 void BNO080parseCommandReport(void);
 bool BNO080dataAvailable(void);
@@ -67,7 +87,12 @@ float BNO080getLinAccelX(void);
 float BNO080getLinAccelY(void);
 float BNO080getLinAccelZ(void);
 uint8_t BNO080getLinAccelAccuracy(void);
+
+void BNO080calibrationRoutine(void);
 int CheckPinLevel(PORT_t* PortCheck, uint8_t pinCheck);
+
+uint8_t BNO080mode;
+uint8_t newDataReport;
 
 
 #endif /* BNO080_H_ */
