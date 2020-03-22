@@ -81,6 +81,9 @@ void BNO080parseCommandReport(void);
 bool BNO080dataAvailable(void);
 //acceleration components
 float qToFloat(int16_t fixedPointValue, uint8_t qPoint);
+float BNO080getAccelX(void);
+float BNO080getAccelY(void);
+float BNO080getAccelZ(void);
 float BNO080getLinAccelX(void);
 float BNO080getLinAccelY(void);
 float BNO080getLinAccelZ(void);
@@ -420,7 +423,7 @@ void BNO080parseCommandReport(void) {
 }
 
 bool BNO080dataAvailable(void){
-	if(!bit_is_clear(PORTA.IN, PIN1_bm))
+	if (CheckPinLevel(&PORTA, _INT) == HIGH)
 		return false;
 	
 	if (BNO080receivePacket() == true)
@@ -447,26 +450,51 @@ float qToFloat(int16_t fixedPointValue, uint8_t qPoint)
 	qFloat *= pow(2, qPoint * -1);
 	return (qFloat);
 }
+
 //Return the acceleration component
-float BNO080getLinAccelX(void) {
-	float accel = qToFloat(rawLinAccelX, linear_accelerometer_Q1);
-	return (accel);
+float BNO080getAccelX(void) {
+	float accel = qToFloat(rawAccelX, accelerometer_Q1);
+	return accel;
 }
+
 //Return the acceleration component
+float BNO080getAccelY(void) {
+	float accel = qToFloat(rawAccelY, accelerometer_Q1);
+	return accel;
+}
+
+//Return the acceleration component
+float BNO080getAccelZ(void) {
+	float accel = qToFloat(rawAccelZ, accelerometer_Q1);
+	return accel;
+}
+
+//Return the acceleration component
+uint8_t BNO080getAccelAccuracy()
+{
+	return (accelAccuracy);
+}
+
+//Return the lin acceleration component
+float BNO080getLinAccelX(void) {
+	float linAccel = qToFloat(rawLinAccelX, linear_accelerometer_Q1);
+	return (linAccel);
+}
+//Return the lin acceleration component
 float BNO080getLinAccelY(void)
 {
-	float accel = qToFloat(rawLinAccelY, linear_accelerometer_Q1);
-	return (accel);
+	float linAccel = qToFloat(rawLinAccelY, linear_accelerometer_Q1);
+	return (linAccel);
 }
 
-//Return the acceleration component
+//Return the lin acceleration component
 float BNO080getLinAccelZ(void)
 {
-	float accel = qToFloat(rawLinAccelZ, linear_accelerometer_Q1);
-	return (accel);
+	float linAccel = qToFloat(rawLinAccelZ, linear_accelerometer_Q1);
+	return (linAccel);
 }
 
-//Return the acceleration component
+//Return the lin acceleration component
 uint8_t BNO080getLinAccelAccuracy(void)
 {
 	return (accelLinAccuracy);
@@ -485,5 +513,13 @@ void BNO080calibrationRoutine(void) {
 }
 
 void BNO080calibrateAccelerometer(void) {
-	//TODO: functie die de accelerometer waardes weergeeft en daarbij de nauwkeurigheid, het indrukken van een knop moet het einde zijn van deze functie
+	if(newDataReport == SENSOR_REPORTID_ACCELEROMETER) {
+		float accelX = BNO080getAccelX();
+		float accelY = BNO080getAccelY();
+		float accelZ = BNO080getAccelZ();
+		printf("X: %0.2f | Y: %0.2f | Z: %0.2f | %d \n", accelX, accelY, accelZ, accelAccuracy);
+		if ((CheckPinLevel(&PORTA, PIN3_bm) == HIGH) && (accelAccuracy == 3))
+		{
+		}
+	}
 }
