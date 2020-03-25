@@ -35,23 +35,7 @@ int16_t linear_accelerometer_Q1 = 8;
 int16_t gyro_Q1 = 9;
 int16_t magnetometer_Q1 = 4;
 
-/*! \brief SPI master module on PORT D. */
-SPI_Master_t spiMasterD;
-
-/*! \brief SPI Data packet */
-SPI_DataPacket_t dataPacket;
-
-/*! \brief Test data to send from master. */
-uint8_t masterSendData[NUM_BYTES] = {0x11, 0x22, 0x33, 0x44};
-
-/*! \BNO080 product ID Request. */
-uint8_t BNO080_IDrequest[ID_REQUEST_BYTES] = {0xF9, 0x00};
-
-/*! \brief Data received from slave. */
-uint8_t masterReceivedData[32];
-
-PORT_t *ssPort = &PORTD;
-
+uint8_t calibrationState = S_BEGIN;
 /*! \brief Result of the test. */
 bool success = true;
 
@@ -66,17 +50,19 @@ void setBNO080pins(void);
 uint8_t BNO080BeginSPI(void);
 uint8_t BNO080waitForSPI(void);
 uint8_t initBNO080(void);
+//Sending packets
 bool BNO080sendPacket(uint8_t channelNumber, uint8_t dataLength);
 void BNO080sendCommand(uint8_t command);
 void BNO080sendCalibrateCommand(uint8_t thingToCalibrate);
 void BNO080setFeatureCommand(uint8_t reportID, uint16_t timeBetweenReports, uint32_t specificConfig);
-bool BNO080receivePacket(void);
-void BNO080parseInputReport(void);
 void BNO080enableRotationVector(uint16_t timeBetweenReports);
 void BNO080enableAccelerometer(uint16_t timeBetweenReports);
 void BNO080enableLinearAccelerometer(uint16_t timeBetweenReports);
 void BNO080enableGyro(uint16_t timeBetweenReports);
 void BNO080enableMagnetometer(uint16_t timeBetweenReports);
+//Receiving packets
+bool BNO080receivePacket(void);
+void BNO080parseInputReport(void);
 void BNO080parseCommandReport(void);
 bool BNO080dataAvailable(void);
 //acceleration components
@@ -88,10 +74,24 @@ float BNO080getLinAccelX(void);
 float BNO080getLinAccelY(void);
 float BNO080getLinAccelZ(void);
 uint8_t BNO080getLinAccelAccuracy(void);
+//Gyro components
+float BNO080getGyroX();
+float BNO080getGyroY();
+float BNO080getGyroZ();
+//Magnetometer components
+float BNO080getMagX();
+float BNO080getMagX();
+float BNO080getMagX();
 //Mode functions
 void BNO080getMode(void);
 //calibration functions
 void BNO080calibrationRoutine(void);
+void BNO080calibrateAccelerometer(void);
+void BNO080calibrateGyroscope(void);
+void BNO080calibrateMagnetometer(void);
+uint8_t calibrationSampleAcc = 0;
+uint8_t calibrationSampleGyro = 0;
+uint8_t calibrationSampleMag = 0;
 
 void setBNO080pins(void){
 	//The INT pin: input, acvtive low
@@ -104,8 +104,8 @@ void setBNO080pins(void){
 	PORTA.DIRSET	= _WAKE;		//PIN6
 	PORTA.PIN6CTRL	= PORT_OPC_PULLUP_gc;
 	//The calibrationMode select pin, LOW = operation mode, HIHG = calibration mode
-	PORTA.DIRCLR	= _MODE;
-	PORTA.PIN3CTRL	= PORT_OPC_PULLDOWN_gc;
+	PORTD.DIRCLR	= _MODE;
+	PORTD.PIN0CTRL	= PORT_OPC_PULLDOWN_gc;
 }
 
 uint8_t BNO080BeginSPI(void){
@@ -202,9 +202,8 @@ bool BNO080sendPacket(uint8_t channelNumber, uint8_t dataLength){
 		for (uint8_t i = 0; i < dataLength; i++) {
 			printf("shtpdata[%d]: %d \n",i, shtpData[i]);
 			spi_transfer(shtpData[i]);
-			//SPI_MasterTransmitByte(&spiMasterD,shtpData[i]);
 		}
-		//SPI_MasterSSHigh(ssPort, PIN4_bm);
+		
 		PORTD.OUTSET = SPI_SS_bm;
 		uint16_t lenght = ((uint16_t) (packetLength >> 8)<< 8 | (packetLength & 0xFF));
 		printf("-----Lenght = %d\n", lenght);
@@ -216,6 +215,7 @@ bool BNO080sendPacket(uint8_t channelNumber, uint8_t dataLength){
 }
 
 void BNO080sendCommand(uint8_t command) {
+	printf("Send command\n");
 	shtpData[0] = SHTP_REPORT_COMMAND_REQUEST;	//Command Request
 	shtpData[1] = commandSequenceNumber++;		//Increments automatically each function call
 	shtpData[2] = command;						//Command
@@ -225,6 +225,7 @@ void BNO080sendCommand(uint8_t command) {
 }
 
 void BNO080sendCalibrateCommand(uint8_t thingToCalibrate) {
+	printf("Set up calibration command\n");
 	for (uint8_t i = 3; i < 12; i++) //Clear this section of the shtpData array
 		shtpData[i] = 0;
 		
@@ -302,7 +303,6 @@ bool BNO080receivePacket(void){
 	uint16_t dataLength = ((uint16_t)packetMSB << 8 | packetLSB);
 	dataLength &= ~(1 << 15); //Clear the MSbit.
 	if (dataLength == 0){
-		printf("dataLength = 0...\n");
 		PORTD.OUTSET = SPI_SS_bm;
 		return false; //Packet is empty
 	}
@@ -316,11 +316,6 @@ bool BNO080receivePacket(void){
 	}
 	//SPI_MasterSSHigh(ssPort, PIN4_bm); //Release BNO080
 	PORTD.OUTSET = SPI_SS_bm;
-	printf("SHPT header 1: %d \n", shtpHeader[0]);
-	printf("SHPT header 2: %d \n", shtpHeader[1]);
-	printf("SHPT header 3: %d \n", shtpHeader[2]);
-	printf("SHPT header 4: %d \n", shtpHeader[3]);
-	printf("dataLength = %d\n", dataLength);
 	return true;
 }
 
@@ -346,8 +341,10 @@ void BNO080parseInputReport(void) {
 		data5 = (uint16_t)shtpData[REPORT_ID_INDEX + 13] << 8 | shtpData[REPORT_ID_INDEX + 12];
 	
 	//Store these generic values to their proper global variable
+	printf("REPORT_ID_INDEX = %d\n", shtpData[REPORT_ID_INDEX]);
 	if (shtpData[REPORT_ID_INDEX] == SENSOR_REPORTID_ACCELEROMETER)
 	{
+		printf("ACCELEROMETER\n");
 		accelAccuracy = status;
 		rawAccelX = data1;
 		rawAccelY = data2;
@@ -356,7 +353,7 @@ void BNO080parseInputReport(void) {
 	}
 	else if (shtpData[REPORT_ID_INDEX] == SENSOR_REPORTID_LINEAR_ACCELERATION)
 	{
-		printf("Linear ACC!!\n");
+		printf("LINEAR_ACCELERATION\n");
 		accelLinAccuracy = status;
 		rawLinAccelX = data1;
 		rawLinAccelY = data2;
@@ -365,6 +362,7 @@ void BNO080parseInputReport(void) {
 	}
 	else if (shtpData[5] == SENSOR_REPORTID_GYROSCOPE)
 	{
+		printf("GYROSCOPE\n");
 		gyroAccuracy = status;
 		rawGyroX = data1;
 		rawGyroY = data2;
@@ -373,6 +371,7 @@ void BNO080parseInputReport(void) {
 	}
 	else if (shtpData[5] == SENSOR_REPORTID_MAGNETIC_FIELD)
 	{
+		printf("MAGNETIC_FIELD\n");
 		magAccuracy = status;
 		rawMagX = data1;
 		rawMagY = data2;
@@ -500,26 +499,114 @@ uint8_t BNO080getLinAccelAccuracy(void)
 	return (accelLinAccuracy);
 }
 
+//Return the gyro component
+float BNO080getGyroX()
+{
+	float gyro = qToFloat(rawGyroX, gyro_Q1);
+	return (gyro);
+}
+
+//Return the gyro component
+float BNO080getGyroY()
+{
+	float gyro = qToFloat(rawGyroY, gyro_Q1);
+	return (gyro);
+}
+
+//Return the gyro component
+float BNO080getGyroZ()
+{
+	float gyro = qToFloat(rawGyroZ, gyro_Q1);
+	return (gyro);
+}
+
+//Return the magnetometer component
+float BNO080getMagX()
+{
+	float mag = qToFloat(rawMagX, magnetometer_Q1);
+	return (mag);
+}
+
+//Return the magnetometer component
+float BNO080getMagY()
+{
+	float mag = qToFloat(rawMagY, magnetometer_Q1);
+	return (mag);
+}
+
+//Return the magnetometer component
+float BNO080getMagZ()
+{
+	float mag = qToFloat(rawMagZ, magnetometer_Q1);
+	return (mag);
+}
+
+
 void BNO080getMode(void) {
 	//The calibrationMode select pin, LOW = operation mode, HIHG = calibration mode
-	if(CheckPinLevel(&PORTA, _MODE))
+	if(CheckPinLevel(&PORTD, _MODE) == HIGH){ 
 		BNO080mode = CALIBRATION_MODE;
-	else
+		printf("Calibration Mode!");
+	}
+	else {
 		BNO080mode = OPERATION_MODE;
+		printf("Operation Mode!");
+	}
 }
 
 void BNO080calibrationRoutine(void) {
-	//TODO: functie die alle calibratie routines in een doet en vervolgens een saveNow command verstuurd.
+	if(calibrationState == S_BEGIN) 
+		BNO080calibrateAccelerometer();
+		
+	if (calibrationState == S_ACC_DONE)
+		BNO080calibrateGyroscope();
+		
+	if (calibrationState == S_GYRO_DONE)
+		BNO080calibrateMagnetometer();
 }
 
+/*
+The accelerometer will be calibrated after the device is moved into 4-6 unique orientations and held in each orientation for ~1 second.  
+One way to think about this is the “cube” 
+*/
 void BNO080calibrateAccelerometer(void) {
 	if(newDataReport == SENSOR_REPORTID_ACCELEROMETER) {
+		calibrationSampleAcc++;
 		float accelX = BNO080getAccelX();
 		float accelY = BNO080getAccelY();
 		float accelZ = BNO080getAccelZ();
 		printf("X: %0.2f | Y: %0.2f | Z: %0.2f | %d \n", accelX, accelY, accelZ, accelAccuracy);
-		if ((CheckPinLevel(&PORTA, PIN3_bm) == HIGH) && (accelAccuracy == 3))
-		{
-		}
+		if ((CheckPinLevel(&PORTD, _MODE) == HIGH) && (accelAccuracy == 3 || accelAccuracy == 2) && (calibrationSampleAcc > MIN_SAMPLES_ACC))
+			calibrationState = S_ACC_DONE;
+	}
+}
+
+/*
+Set the device down on a stationary surface for ~2-3 seconds to calibrate the gyroscope
+*/
+void BNO080calibrateGyroscope(void) {
+	if(newDataReport == SENSOR_REPORTID_GYROSCOPE) {
+		calibrationSampleGyro++;
+		float gyroX = BNO080getGyroX();
+		float gyroY = BNO080getGyroY();
+		float gyroZ = BNO080getGyroZ();
+		printf("X: %0.2f | Y: %0.2f | Z: %0.2f | %d \n", gyroX, gyroY, gyroZ, gyroAccuracy);
+		if ((CheckPinLevel(&PORTD, _MODE) == HIGH) && (gyroAccuracy == 3 || gyroAccuracy == 2) && (calibrationSampleGyro > MIN_SAMPLES_GYRO))
+		calibrationState = S_GYRO_DONE;
+	}
+}
+
+/*
+Set the device down on a stationary surface for ~2-3 seconds to calibrate the gyroscope
+*/
+void BNO080calibrateMagnetometer(void) {
+	if(newDataReport == SENSOR_REPORTID_MAGNETIC_FIELD) {
+		calibrationSampleMag++;
+		float magX = BNO080getMagX();
+		float magY = BNO080getMagY();
+		float magZ = BNO080getMagZ();
+		printf("X: %0.2f | Y: %0.2f | Z: %0.2f | %d \n", magX, magY, magZ, magAccuracy);
+		if ((CheckPinLevel(&PORTD, _MODE) == HIGH) && (magAccuracy == 3 || magAccuracy == 2) && (calibrationSampleMag > MIN_SAMPLES_MAG))
+		calibrationState = S_MAG_DONE;
 	}
 }

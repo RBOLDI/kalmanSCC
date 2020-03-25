@@ -11,6 +11,9 @@
 
 int main(void)
 {
+	PORTD.DIRSET = PIN2_bm;
+	PORTD.OUTSET = PIN2_bm;
+	
 	float x = 0;
 	float y = 0;
 	float z = 0;
@@ -44,6 +47,7 @@ int main(void)
 	while(BNO080mode == CALIBRATION_MODE) {
 		if (BNO080dataAvailable())
 		{
+			BNO080calibrationRoutine();
 		}	
 	} 
 }

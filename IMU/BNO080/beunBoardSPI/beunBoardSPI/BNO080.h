@@ -57,13 +57,22 @@
 #define _INT	PIN0_bm
 #define _WAKE	PIN6_bm
 #define _RST	PIN1_bm
-#define _MODE	PIN3_bm
+#define _MODE	PIN0_bm
 
 #define HIGH	1
 #define LOW		0
 
 #define CALIBRATION_MODE	1
 #define OPERATION_MODE		0
+#define S_BEGIN				0
+#define S_ACC_DONE			1
+#define S_GYRO_DONE			2
+#define S_MAG_DONE			3
+
+#define MIN_SAMPLES_ACC		60
+#define MIN_SAMPLES_GYRO	30
+#define MIN_SAMPLES_MAG		60
+
 
 void setBNO080pins();
 uint8_t BNO080BeginSPI();
