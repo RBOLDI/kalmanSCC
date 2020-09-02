@@ -17,7 +17,14 @@ int main(void)
 	float x = 0;
 	float y = 0;
 	float z = 0;
+	
+	float rotationQuatX = 0;
+	float rotationQuatY = 0;
+	float rotationQuatZ = 0;
+	float rotationQuatW = 0;
+	
 	uint8_t linAccuracy = 0;
+	float rotationVectorAccuracy = 0;
 	/* Instantiate pointer to ssPort. */
 	init_stream(F_CPU);
 	sei();
@@ -32,6 +39,7 @@ int main(void)
 	}
 	else if(BNO080mode == OPERATION_MODE){
 		BNO080enableLinearAccelerometer(1000);
+		BNO080enableRotationVector(1000);
 	}
 	//Process when in Operation mode
 	while(BNO080mode == OPERATION_MODE) {
@@ -41,6 +49,15 @@ int main(void)
 			z = BNO080getLinAccelZ();
 			linAccuracy = BNO080getLinAccelAccuracy();
 			printf("x: %0.2f, y: %0.2f, z: %0.2f, accuratie: %d \n", x, y, z, linAccuracy);
+		}
+		
+		if (BNO080dataAvailable() && (newDataReport == SENSOR_REPORTID_ROTATION_VECTOR)) {
+			rotationQuatX = BNO080getQuatI_X();
+			rotationQuatY = BNO080getQuatJ_Y();
+			rotationQuatZ = BNO080getQuatK_Z();
+			rotationQuatW = BNO080getQuatReal_W();
+			rotationVectorAccuracy = BNO080getQuatRadianAccuracy();
+			printf("x: %0.2f, y: %0.2f, z: %0.2f, w: %0.2f accuratie: %0.2f \n", rotationQuatX, rotationQuatY, rotationQuatZ, rotationQuatW, rotationVectorAccuracy);
 		}
 	}
 	//Process when in Calibration mode

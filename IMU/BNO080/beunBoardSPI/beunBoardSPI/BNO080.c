@@ -30,6 +30,7 @@ uint8_t calibrationStatus;
 //These Q values are defined in the datasheet but can also be obtained by querying the meta data records
 //See the read metadata example for more info
 int16_t rotationVector_Q1 = 14;
+int16_t rotationVectorAccuracy_Q1 = 12; //Heading accuracy estimate in radians. The Q point is 12.
 int16_t accelerometer_Q1 = 8;
 int16_t linear_accelerometer_Q1 = 8;
 int16_t gyro_Q1 = 9;
@@ -82,6 +83,12 @@ float BNO080getGyroZ();
 float BNO080getMagX();
 float BNO080getMagX();
 float BNO080getMagX();
+//Rotation components
+float BNO080getQuatReal_W();		
+float BNO080getQuatI_X();
+float BNO080getQuatJ_Y();
+float BNO080getQuatK_Z();
+float BNO080getQuatRadianAccuracy();
 //Mode functions
 void BNO080getMode(void);
 //calibration functions
@@ -378,6 +385,20 @@ void BNO080parseInputReport(void) {
 		rawMagZ = data3;
 		newDataReport = SENSOR_REPORTID_MAGNETIC_FIELD;
 	}
+	else if (shtpData[5] == SENSOR_REPORTID_ROTATION_VECTOR)
+	{
+		printf("ROTATION VECTOR\n");
+		quatAccuracy = status;
+		rawQuatI = data1;
+		rawQuatJ = data2;
+		rawQuatK = data3;
+		rawQuatReal = data4;
+
+		//Only available on rotation vector and ar/vr stabilized rotation vector,
+		// not game rot vector and not ar/vr stabilized rotation vector
+		rawQuatRadianAccuracy = data5;
+		newDataReport = SENSOR_REPORTID_ROTATION_VECTOR;
+	}
 }
 
 void BNO080enableRotationVector(uint16_t timeBetweenReports){
@@ -539,6 +560,41 @@ float BNO080getMagZ()
 {
 	float mag = qToFloat(rawMagZ, magnetometer_Q1);
 	return (mag);
+}
+
+//Return the rotation vector quaternion I_X
+float BNO080getQuatI_X()
+{
+	float quat = qToFloat(rawQuatI, rotationVector_Q1);
+	return (quat);
+}
+
+//Return the rotation vector quaternion J_Y
+float BNO080getQuatJ_Y()
+{
+	float quat = qToFloat(rawQuatJ, rotationVector_Q1);
+	return (quat);
+}
+
+//Return the rotation vector quaternion K_Z
+float BNO080getQuatK_Z()
+{
+	float quat = qToFloat(rawQuatK, rotationVector_Q1);
+	return (quat);
+}
+
+//Return the rotation vector quaternion Real_W
+float BNO080getQuatReal_W()
+{
+	float quat = qToFloat(rawQuatReal, rotationVector_Q1);
+	return (quat);
+}
+
+//Return the rotation vector accuracy
+float BNO080getQuatRadianAccuracy()
+{
+	float quat = qToFloat(rawQuatRadianAccuracy, rotationVectorAccuracy_Q1);
+	return (quat);
 }
 
 

@@ -35,7 +35,7 @@
 #define SENSOR_REPORTID_GYROSCOPE			0x02
 #define SENSOR_REPORTID_MAGNETIC_FIELD		0x03
 #define SENSOR_REPORTID_LINEAR_ACCELERATION 0x04
-#define SENSOR_REPORTID_ROTATION_VECTOR		0x05
+#define SENSOR_REPORTID_ROTATION_VECTOR		5
 //Record IDs from figure 29, page 29 reference manual
 //These are used to read the metadata for each sensor type
 
@@ -96,6 +96,12 @@ float BNO080getLinAccelX(void);
 float BNO080getLinAccelY(void);
 float BNO080getLinAccelZ(void);
 uint8_t BNO080getLinAccelAccuracy(void);
+//Rotation components
+float BNO080getQuatReal_W();
+float BNO080getQuatI_X();
+float BNO080getQuatJ_Y();
+float BNO080getQuatK_Z();
+float BNO080getQuatRadianAccuracy();
 
 void BNO080calibrationRoutine(void);
 int CheckPinLevel(PORT_t* PortCheck, uint8_t pinCheck);
