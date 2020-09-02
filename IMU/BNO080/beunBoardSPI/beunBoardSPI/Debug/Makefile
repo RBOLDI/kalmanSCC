@@ -38,6 +38,7 @@ SUBDIRS :=
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
 ../BNO080.c \
+../rotation.c \
 ../serialF0.c \
 ../spi.c \
 ../spi_driver.c \
@@ -52,6 +53,7 @@ ASM_SRCS +=
 
 OBJS +=  \
 BNO080.o \
+rotation.o \
 serialF0.o \
 spi.o \
 spi_driver.o \
@@ -59,6 +61,7 @@ main.o
 
 OBJS_AS_ARGS +=  \
 BNO080.o \
+rotation.o \
 serialF0.o \
 spi.o \
 spi_driver.o \
@@ -66,6 +69,7 @@ main.o
 
 C_DEPS +=  \
 BNO080.d \
+rotation.d \
 serialF0.d \
 spi.d \
 spi_driver.d \
@@ -73,6 +77,7 @@ main.d
 
 C_DEPS_AS_ARGS +=  \
 BNO080.d \
+rotation.d \
 serialF0.d \
 spi.d \
 spi_driver.d \
@@ -93,6 +98,13 @@ LINKER_SCRIPT_DEP+=
 
 # AVR32/GNU C Compiler
 ./BNO080.o: .././BNO080.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\XMEGAA_DFP\1.1.68\include"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atxmega256a3u -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\XMEGAA_DFP\1.1.68\gcc\dev\atxmega256a3u" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+./rotation.o: .././rotation.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\XMEGAA_DFP\1.1.68\include"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atxmega256a3u -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\XMEGAA_DFP\1.1.68\gcc\dev\atxmega256a3u" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

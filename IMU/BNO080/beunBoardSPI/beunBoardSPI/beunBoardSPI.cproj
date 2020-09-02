@@ -157,6 +157,12 @@
     <Compile Include="BNO080.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="rotation.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="rotation.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="serialF0.c">
       <SubType>compile</SubType>
     </Compile>

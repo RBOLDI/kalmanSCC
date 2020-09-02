@@ -4,6 +4,8 @@
 
 BNO080.c
 
+rotation.c
+
 serialF0.c
 
 spi.c
