@@ -6,8 +6,9 @@
  
  SparkFun code, firmware, and software is released under the MIT License(http://opensource.org/licenses/MIT).
 */
-
+#include <stdio.h>
 #include "BNO080.h"
+#include "rotation.h"
 
 int main(void)
 {
@@ -28,6 +29,13 @@ int main(void)
 	/* Instantiate pointer to ssPort. */
 	init_stream(F_CPU);
 	sei();
+	//Test of inverse matrix function
+		float matrix[3][3] = {	{-1, -2, 2},
+		{2, 1, 1},
+		{3, 4, 5}};
+		float inverse[3][3];
+		inverseMatrix(matrix, inverse);
+	//end of test	
 	if(!initBNO080()) return 0;
 	
 	if(BNO080mode == CALIBRATION_MODE){
