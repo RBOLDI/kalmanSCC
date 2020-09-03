@@ -9,11 +9,6 @@
 #include <math.h>
 #include <stdio.h>
 
-#define Q_X	0
-#define Q_Y	1
-#define Q_Z 2
-#define Q_W 3
-
 float rotationVector[4];			//is expressed as a quaternion referenced to magnetic north and gravity
 float rotationMatrix[3][3];			//is expressed as a 3x3 matrix referenced to magnetic north and gravity
 float inverseRotationMatrix[3][3];	//is expressed as a 3x3 matrix, needed to rotate the acceleration vector
@@ -22,53 +17,42 @@ float accelNorth = 0;
 float accelEast = 0;
 float acceldown = 0;
 
-void fillRotationVector(float quatX, float quatY, float quatZ, float quatW);
-void fillRotationMatrix(float *quaternion, float **rotMatrix);
-void inverseMatrix(float matrix[3][3], float inverse[3][3]);
+void updateRotationMatrix(float *quaternion);
+void update_AccelNorth(float *accelVector, float *accelVector_refNorth);
 void matrixOfMinors(float matrix[3][3], float minorMatrix[3][3]);
 void cofactorMatrix(float minorMatrix[3][3]);
-void fillInverseMatrix(float adjugate_Matrix[3][3], float inverse_Matrix[3][3], float determinant);
+void inverseMatrix(float adjugate_Matrix[3][3], float inverse_Matrix[3][3], float determinant);
+void rotateAccel(float *accel, float inverseRotMatrix[3][3], float *accelRotated);
 
-void fillRotationVector(float quatX, float quatY, float quatZ, float quatW){
-	rotationVector[Q_X] = quatX;
-	rotationVector[Q_Y] = quatY;
-	rotationVector[Q_Z] = quatZ;
-	rotationVector[Q_W] = quatW;
-}
-
-void fillRotationMatrix(float *quaternion, float **rotMatrix){
-	https://fabiensanglard.net/doom3_documentation/37726-293748.pdf
+void updateRotationMatrix(float *quaternion){
+	//https://fabiensanglard.net/doom3_documentation/37726-293748.pdf
 	//first column:
-	rotMatrix[0][0] = 1 - (2*pow(quaternion[Q_Y], 2)) - (2*pow(quaternion[Q_Z],2));					//1 - 2y² - 2z² 
-	rotMatrix[0][1] = (2*quaternion[Q_X]*quaternion[Q_Y]) - (2*quaternion[Q_W]*quaternion[Q_Z]);	//2xy - 2wz
-	rotMatrix[0][2] = (2*quaternion[Q_X]*quaternion[Q_Z]) + (2*quaternion[Q_W]*quaternion[Q_Y]);	//2xz + 2wy
+	rotationMatrix[0][0] = 1 - (2*pow(quaternion[Q_Y], 2)) - (2*pow(quaternion[Q_Z],2));				//1 - 2y² - 2z² 
+	rotationMatrix[0][1] = (2*quaternion[Q_X]*quaternion[Q_Y]) + (2*quaternion[Q_W]*quaternion[Q_Z]);	//2xy + 2wz
+	rotationMatrix[0][2] = (2*quaternion[Q_X]*quaternion[Q_Z]) - (2*quaternion[Q_W]*quaternion[Q_Y]);	//2xz - 2wy
 	
 	//second column:
-	rotMatrix[1][0] = (2*quaternion[Q_X]*quaternion[Q_Y]) + (2*quaternion[Q_W]*quaternion[Q_Z]);	//2xy + 2wz
-	rotMatrix[1][1] = 1 - (2*pow(quaternion[Q_X], 2)) - (2*pow(quaternion[Q_Z],2));					//1 - 2x² - 2z²
-	rotMatrix[1][2] = (2*quaternion[Q_Y]*quaternion[Q_Z]) - (2*quaternion[Q_W]*quaternion[Q_X]);	//2yz - 2wx
+	rotationMatrix[1][0] = (2*quaternion[Q_X]*quaternion[Q_Y]) - (2*quaternion[Q_W]*quaternion[Q_Z]);	//2xy - 2wz
+	rotationMatrix[1][1] = 1 - (2*pow(quaternion[Q_X], 2)) - (2*pow(quaternion[Q_Z],2));				//1 - 2x² - 2z²
+	rotationMatrix[1][2] = (2*quaternion[Q_Y]*quaternion[Q_Z]) + (2*quaternion[Q_W]*quaternion[Q_X]);	//2yz + 2wx
 	
 	//third column:
-	rotMatrix[2][0] = (2*quaternion[Q_X]*quaternion[Q_Z]) - (2*quaternion[Q_W]*quaternion[Q_Y]);	//2xz - 2wy
-	rotMatrix[0][2] = (2*quaternion[Q_Y]*quaternion[Q_Z]) + (2*quaternion[Q_W]*quaternion[Q_X]);	//2yz + 2wx
-	rotMatrix[1][1] = 1 - (2*pow(quaternion[Q_X], 2)) - (2*pow(quaternion[Q_Y],2));					//1 - 2x² - 2y²
+	rotationMatrix[2][0] = (2*quaternion[Q_X]*quaternion[Q_Z]) + (2*quaternion[Q_W]*quaternion[Q_Y]);	//2xz + 2wy
+	rotationMatrix[2][1] = (2*quaternion[Q_Y]*quaternion[Q_Z]) - (2*quaternion[Q_W]*quaternion[Q_X]);	//2yz - 2wx
+	rotationMatrix[2][2] = 1 - (2*pow(quaternion[Q_X], 2)) - (2*pow(quaternion[Q_Y],2));				//1 - 2x² - 2y²
 }
 
-void inverseMatrix(float matrix[3][3], float inverse[3][3]){
+void update_AccelNorth(float *accelVector, float *accelVector_refNorth){
 	//Inverse matrix = (1/determinat)* adjugate matrix
 	float determinant = 0;
+	float inverse_Matrix[3][3];
 	float copyMatrix[3][3];
-	
-	matrixOfMinors(matrix, copyMatrix);						//determine matrix of minors
-	cofactorMatrix(copyMatrix);								//determine cofactor matrix	
-	determinant = determinantCalc(matrix);					//calculate the determinant
-	adjugateMatrix(copyMatrix);								//determine adjugate matrix
-	fillInverseMatrix(copyMatrix, inverse, determinant);	//fill inverseMatrix
-	for (int i = 0; i < 3; i++) {
-		for (int j = 0; j < 3; j++){
-			printf("[%d][%d] = %0.2f\n", i, j, inverse[i][j]);
-		}
-	}
+	matrixOfMinors(rotationMatrix, copyMatrix);						//determine matrix of minors
+	cofactorMatrix(copyMatrix);										//determine cofactor matrix	
+	determinant = determinantCalc(rotationMatrix);					//calculate the determinant
+	adjugateMatrix(copyMatrix);										//determine adjugate matrix
+	inverseMatrix(copyMatrix, inverse_Matrix, determinant);			//fill inverseMatrix
+	rotateAccel(accelVector, inverse_Matrix, accelVector_refNorth);
 }
 
 void matrixOfMinors(float matrix[3][3], float minorMatrix[3][3]){
@@ -119,7 +103,7 @@ void adjugateMatrix(float cofactor_Matrix[3][3]){
 	}
 }
 
-void fillInverseMatrix(float adjugate_Matrix[3][3], float inverse_Matrix[3][3], float determinant){
+void inverseMatrix(float adjugate_Matrix[3][3], float inverse_Matrix[3][3], float determinant){
 	for (int i = 0; i < 3; i++){
 		for(int j = 0; j < 3; j++){
 			inverse_Matrix[i][j] = (1/determinant)*adjugate_Matrix[i][j];
@@ -127,3 +111,14 @@ void fillInverseMatrix(float adjugate_Matrix[3][3], float inverse_Matrix[3][3], 
 	}
 }
 
+void rotateAccel(float *accel, float inverseRotMatrix[3][3], float *accelRotated){
+	for (int i = 0; i < 3; i++) {
+		accelRotated[i] = 0;
+	}
+	//multiply accelVector by the inverse rotation matrix.
+	for(int i=0; i<3; i++){
+		for(int j=0; j<3; j++){
+			accelRotated[i] = accelRotated[i]+(inverseRotMatrix[i][j]*accel[j]);
+		}
+	}
+}

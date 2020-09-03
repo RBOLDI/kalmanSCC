@@ -1,0 +1,1197 @@
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+div {
+    filter: none;
+    -webkit-filter: blur(0px);
+    -moz-filter: blur(0px);
+    -ms-filter: blur(0px);
+    filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius='0');
+    image-rendering: optimizeQuality;
+    image-rendering: smooth;
+
+
+    -webkit-transform: translate3d(0, 0, 0);
+
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+blockquote,
+q {
+    quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/* NOW ADD YOUR CSS */
+
+img {
+    max-width: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+/*300x250 redone*/
+/* @font-face {
+    font-family: 'FuturaND';
+    src: url('fonts/futura.woff');
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+@font-face {
+    font-family: 'TradeGothic';
+    src: url('fonts/TradeGothicforNike365-BdCn.woff');
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+@font-face{
+    font-family:"Helvetica Neue LT W05_55 Roman";
+    src:url("fonts/08edde9d-c27b-4731-a27f-d6cd9b01cd06.woff");
+    font-weight: 400;
+    font-style: normal;
+    } */
+@font-face {
+            font-family: 'FuturaND';
+            src: url('fonts/371DFC_1_0.eot');
+            src: url('fonts/371DFC_1_0.eot?#iefix') format('embedded-opentype'),
+                 url('fonts/371DFC_1_0.woff2') format('woff2'),
+                 url('fonts/371DFC_1_0.woff') format('woff'),
+                 url('fonts/371DFC_1_0.ttf') format('truetype'),
+                 url('fonts/371DFC_1_0.svg#371DFC_1_0') format('svg');
+        }
+        
+        @font-face {
+            font-family: 'TradeGothic';
+            src: url('fonts/371DFC_4_0.eot');
+            src: url('fonts/371DFC_4_0.eot?#iefix') format('embedded-opentype'),
+                 url('fonts/371DFC_4_0.woff2') format('woff2'),
+                 url('fonts/371DFC_4_0.woff') format('woff'),
+                 url('fonts/371DFC_4_0.ttf') format('truetype'),
+                 url('fonts/371DFC_4_0.svg#371DFC_4_0') format('svg');
+        }
+        @font-face {
+            font-family: 'Helvetica Neue LT W05_55 Roman';
+            src: url('fonts/Helvetica LT_0.eot');
+            src: url('fonts/Helvetica LT_0.eot?#iefix') format('embedded-opentype'),
+                 url('fonts/Helvetica LT_0.woff2') format('woff2'),
+                 url('fonts/HelveticaLT.woff') format('woff'),
+                 url('fonts/HelveticaLT.ttf') format('truetype'),
+                 url('fonts/HelveticaLT.svg#HelveticaLT') format('svg');
+        }
+
+
+p.name {
+    position: absolute;
+    text-transform: uppercase;
+    /*top: 11px;*/
+    left: 25px;
+    right: 0;
+     text-align: center; 
+    width: 160px;
+    max-height: 20px;
+    font-family: 'TradeGothic';
+    font-size: 18px;
+    color: #FFFFFF;
+    /*overflow: hidden;*/
+    border: 1px solid transparent;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.name span {
+    font-family: "Helvetica Neue LT W05_55 Roman";
+    font-size: 0.6em; 
+    line-height: 1;
+    display: block;
+    padding-top: 5px;
+} 
+
+.verticalAlign {
+  position: relative;
+  top: 50%;
+  transform: perspective(1px) translateY(-50%);
+}
+
+#priceContainer {
+    position: absolute;
+    left: 0px;
+    height: 30px;
+    width: 100%;
+    top: 10px;
+}
+
+p.category {
+    position: absolute;
+    /*text-transform: uppercase;*/
+    top: 31px;
+    left: 25px;
+    right: 0;
+    /* text-align: center; */
+    width: 160px;
+    max-height: 18px;
+    font-family: 'Helvetica', Arial;
+    font-size: 10px;
+    color: #FFFFFF;
+/*    overflow: hidden;*/
+    border: 1px solid transparent;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.t3 {
+    font-size: 0.9em;
+}
+
+div.product {
+    position: absolute;
+    top: 32px;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+    width: 225px;
+    height: 11px;
+    font-family: 'Helvetica', Arial;
+    color: #FFFFFF;
+    font-size: 11px;
+/*    overflow: hidden;*/
+}
+
+div.price {
+    position: absolute;
+    text-transform: uppercase;
+    left: 25px;
+    right: 0;
+     text-align: center; 
+    width: 160px;
+    font-family: "Helvetica Neue LT W05_55 Roman";
+    font-size: 13px;
+    color: #FFFFFF;
+    border: 1px solid transparent;
+/*    overflow: hidden;*/
+    /*white-space: nowrap;*/
+    max-height: 20px;
+    margin-top: 10px;
+}
+
+.price span {
+    text-decoration: line-through;
+}
+
+.ab {
+    position: absolute;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+
+.op0 {
+    opacity: 0;
+}
+
+#p1 {
+    clip: rect(0px, 160px, 50px, 0px);
+}
+
+#p1_price {
+    clip: rect(0px, 160px, 50px, 0px);
+}
+
+#p2,
+#p3 {
+    /*background: red;*/
+    clip: rect(50px, 160px, 50px, 0px);
+}
+
+#p2_price,
+#p3_price {
+    /*background: green;*/
+    clip: rect(50px, 160px, 50px, 0px);
+}
+
+#p21 {
+    clip: rect(0px, 160px, 50px, 0px);
+}
+
+#p22, #p23 {
+    clip: rect(50px, 160px, 50px, 0px);
+}
+
+.report{
+    display: none;
+}
+
+#load {
+
+    width: 300px;
+    height: 250px;
+    background: #262626;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+
+
+}
+
+.backup {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+
+.xm {
+    position: absolute;
+    width: 100%;
+}
+
+@media all and (-ms-high-contrast:none)
+     {
+     *::-ms-backdrop, .xm { left: -2px; width: 105%; } /* IE11 */
+     }
+
+.pix {
+    overflow: hidden;
+}
+
+
+#cta {
+    position: absolute;
+    width: 90px;
+    height: 24px;
+    background: white;
+    right: 8px;
+    bottom: 8px;
+    -webkit-border-radius: 2px 2px 2px 2px;
+    border-radius: 2px 2px 2px 2px;
+    color: #262626;
+
+}
+
+#cta p {
+
+
+    font-family: 'TradeGothic';
+    font-size: 17px;
+    text-align: center;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+
+    /*margin-top: -1px;*/
+    color: #262626;
+    position: relative;
+    top: 50%;
+
+    -webkit-transform: translateY(-50%);
+
+    -ms-transform: translateY(-50%);
+
+    transform: translateY(-50%);
+
+    max-width: 80px;
+    max-height: 15px;
+
+    border: 1px solid transparent;
+}
+
+#banner {
+ -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+
+cursor: pointer;
+    width: 299px;
+    height: 250px;
+
+    -webkit-box-sizing: border-box;
+
+    box-sizing: border-box;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    overflow: hidden;
+    background: #f5f5f5;
+    border: 1px solid #262626;
+}
+
+#container {
+
+    width: 300px;
+    height: 250px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    overflow: hidden;
+    color: #fff;
+    font-family: sans-serif;
+    background: #f5f5f5;
+}
+
+#one {
+    width: 108px;
+    height: 108px;
+    background: #f5f5f5;
+    position: absolute;
+
+    left: 192px;
+    overflow: hidden;
+
+    -webkit-box-pack: center;
+
+    -webkit-justify-content: center;
+
+    -ms-flex-pack: center;
+
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+
+    -webkit-box-sizing: border-box;
+
+    box-sizing: border-box;
+    background-position: center center;
+    -webkit-background-size: 175px 175px;
+    background-size: 175px 175px;
+    background-repeat: no-repeat;
+}
+
+#one .content {
+
+    width: 108px;
+    height: 65%;
+    background: #f5f5f5;
+    position: absolute;
+
+    left: 0px;
+    top: 0;
+    overflow: hidden;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+
+    -webkit-box-pack: center;
+
+    -webkit-justify-content: center;
+
+    -ms-flex-pack: center;
+
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+
+    -webkit-box-sizing: border-box;
+
+    box-sizing: border-box;
+
+    /*background: url('http://splashpreviews.com/jobs/358788/im3.jpg');*/
+    background-position: center center;
+    -webkit-background-size: 110px 110px;
+    background-size: 110px 110px;
+    background-repeat: no-repeat;
+
+
+}
+
+#oneclone {
+    width: 300px;
+    height: 300px;
+    background: #f5f5f5;
+    position: absolute;
+    left: -110px;
+    top: -300px;
+    overflow: hidden;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+
+    -webkit-box-sizing: border-box;
+
+    box-sizing: border-box;
+    background-position: center center;
+    -webkit-background-size: 300px 300px;
+    background-size: 300px 300px;
+    background-repeat: no-repeat;
+
+
+}
+
+#oneclone .content {
+    width: 300px;
+    height: 65%;
+    background: #f5f5f5;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    overflow: hidden;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    /*background: url('http://splashpreviews.com/jobs/358788/im3.jpg');*/
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 300px 300px;
+}
+
+#two {
+    width: 300px;
+    height: 300px;
+    background: #f5f5f5;
+    position: absolute;
+    left: 110px;
+    top: -300px;
+    overflow: hidden;
+    /*display: flex;*/
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    /* align horizontal */
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    /* align vertical */
+
+    -webkit-box-sizing: border-box;
+
+    box-sizing: border-box;
+
+    background-position: center center;
+    background-repeat: no-repeat;
+
+
+    background-attachment: fix;
+    z-index: 10;
+
+}
+
+#two .content {
+
+    width: 300px;
+    height: 65%;
+    background: #f5f5f5;
+    position: absolute;
+    left: 0px;
+    top: 0;
+    overflow: hidden;
+
+    -webkit-box-pack: center;
+
+    -webkit-justify-content: center;
+
+    -ms-flex-pack: center;
+
+    justify-content: center;
+    /* align horizontal */
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    /* align vertical */
+
+    -webkit-box-sizing: border-box;
+
+    box-sizing: border-box;
+    /*background: url('http://splashpreviews.com/jobs/358788/im2.jpg');*/
+
+
+
+
+    background-position: center center;
+    background-repeat: no-repeat;
+    -webkit-background-size: 300px 300px;
+    background-size: 300px 300px;
+    /*background-size:auto;*/
+
+    background-attachment: fix;
+    z-index: 10;
+}
+
+#twoclone {
+    width: 190px;
+    height: 185px;
+    background: #f5f5f5;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    overflow: hidden;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    /* align horizontal */
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    /* align vertical */
+
+    -webkit-box-sizing: border-box;
+
+    box-sizing: border-box;
+    -webkit-background-size: auto auto;
+    background-size: auto;
+
+    background-position: center center;
+    background-repeat: no-repeat;
+
+    -webkit-background-size: 192px 192px;
+
+    background-size: 192px 192px;
+    background-attachment: fix;
+    z-index: 10;
+}
+
+
+#three {
+    width: 108px;
+    height: 75px;
+    background: #f5f5f5;
+    position: absolute;
+    left: 192px;
+    top: 110px;
+    overflow: hidden;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+
+    -webkit-box-sizing: border-box;
+
+    box-sizing: border-box;
+    background-position: center center;
+    -webkit-background-size: 110px 110px;
+    background-size: 110px 110px;
+    background-repeat: no-repeat;
+
+    background-attachment: fix;
+    z-index: 6;
+}
+
+#threeclone {
+    width: 300px;
+    height: 300px;
+    background: #f5f5f5;
+    position: absolute;
+    left: 300px;
+    top: 0px;
+    overflow: hidden;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    /* align horizontal */
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    /* align vertical */
+    /*border:3px solid green;*/
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    background-position: center center;
+    background-repeat: no-repeat;
+
+    -webkit-background-size: 300px 300px;
+
+    background-size: 300px 300px;
+    background-attachment: fix;
+    z-index: 6
+}
+
+/* */
+
+#four,
+#seven {
+    width: 108px;
+    height: 108px;
+    background: #f5f5f5;
+    position: absolute;
+    left: 192px;
+    top: -185px;
+    overflow: hidden;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+
+    -webkit-box-sizing: border-box;
+
+    box-sizing: border-box;
+    background-position: center center;
+    -webkit-background-size: 175px 175px;
+    background-size: 175px 175px;
+    background-repeat: no-repeat;
+
+    background-attachment: fix;
+    z-index: 20;
+
+
+}
+
+#four .content,
+#seven .content {
+
+    width: 108px;
+    height: 65%;
+    background: #f5f5f5;
+    position: absolute;
+
+    left: 0px;
+    top: 0;
+    overflow: hidden;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+
+    -webkit-box-sizing: border-box;
+
+    box-sizing: border-box;
+
+    background-position: center center;
+    -webkit-background-size: 110px 110px;
+    background-size: 110px 110px;
+    background-repeat: no-repeat;
+
+
+}
+
+#fourclone,
+#sevenclone {
+    width: 300px;
+    height: 300px;
+    background: #f5f5f5;
+    position: absolute;
+    left: -110px;
+    top: -300px;
+    overflow: hidden;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+
+    -webkit-box-sizing: border-box;
+
+    box-sizing: border-box;
+    background-position: center center;
+    -webkit-background-size: 300px 300px;
+    background-size: 300px 300px;
+    background-repeat: no-repeat;
+
+}
+
+#fourclone .content,
+#sevenclone .content {
+    width: 300px;
+    height: 65%;
+    background: #f5f5f5;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    overflow: hidden;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+
+    -webkit-box-sizing: border-box;
+
+    box-sizing: border-box;
+
+    /* background: url('http://splashpreviews.com/jobs/358788/im3_red.jpg');*/
+
+
+
+
+    background-position: center center;
+    -webkit-background-size: 300px 300px;
+    background-size: 300px 300px;
+    background-repeat: no-repeat;
+
+
+
+}
+
+#five,
+#eight {
+    width: 300px;
+    height: 300px;
+    background: #f5f5f5;
+    position: absolute;
+    left: 110px;
+    top: -300px;
+    overflow: hidden;
+    /*display: flex;*/
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    /* align horizontal */
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    /* align vertical */
+
+    -webkit-box-sizing: border-box;
+
+    box-sizing: border-box;
+
+    background-position: center center;
+    background-repeat: no-repeat;
+
+
+    background-attachment: fix;
+    z-index: 10;
+}
+
+#five .content,
+#eight .content {
+    width: 300px;
+    height: 65%;
+    background: #f5f5f5;
+    position: absolute;
+    left: 0px;
+    top: 0;
+    overflow: hidden;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    /* align horizontal */
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    /* align vertical */
+
+    -webkit-box-sizing: border-box;
+
+    box-sizing: border-box;
+    /*background: url('http://splashpreviews.com/jobs/358788/im2.jpg');*/
+
+
+
+
+    background-position: center center;
+    background-repeat: no-repeat;
+    -webkit-background-size: 300px 300px;
+    background-size: 300px 300px;
+
+
+    background-attachment: fix;
+    z-index: 10;
+}
+
+
+#fiveclone,
+#eightclone {
+    width: 190px;
+    height: 185px;
+    background: #f5f5f5;
+    position: absolute;
+    left: 0px;
+    top: 185px;
+    overflow: hidden;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    /* align horizontal */
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    /* align vertical */
+
+    -webkit-box-sizing: border-box;
+
+    box-sizing: border-box;
+    -webkit-background-size: auto auto;
+    background-size: auto;
+    /*background: url('http://splashpreviews.com/jobs/358788/im2_red.jpg');*/
+    background-position: center center;
+    background-repeat: no-repeat;
+
+    -webkit-background-size: 192px 192px;
+
+    background-size: 192px 192px;
+    background-attachment: fix;
+    z-index: 10;
+}
+
+#six,
+#nine {
+    width: 108px;
+    height: 75px;
+    background: #f5f5f5;
+    position: absolute;
+    left: 192px;
+    top: -75px;
+    overflow: hidden;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    /* align horizontal */
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    /* align vertical */
+    /*border:3px solid blue;*/
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-background-size: auto auto;
+    background-size: auto;
+    /*background: url('http://splashpreviews.com/jobs/358788/im1_red.jpg');*/
+
+    background-position: center center;
+    background-repeat: no-repeat;
+
+    -webkit-background-size: 110px 110px;
+
+    background-size: 110px 110px;
+    background-attachment: fix;
+    z-index: 10;
+}
+
+#sixclone,
+#nineclone {
+    width: 300px;
+    height: 300px;
+    background: #f5f5f5;
+    position: absolute;
+    left: 300px;
+    top: 0px;
+    overflow: hidden;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    /* align horizontal */
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    /* align vertical */
+
+    -webkit-box-sizing: border-box;
+
+    box-sizing: border-box;
+
+    background-position: center center;
+    background-repeat: no-repeat;
+
+    -webkit-background-size: 300px 300px;
+
+    background-size: 300px 300px;
+    background-attachment: fix;
+    z-index: 6
+}
+
+
+/* */
+
+.strap {
+    width: 100%;
+    height: 35%;
+    background: #262626;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-top: 2px solid #f5f5f5;
+    font-family: FuturaND;
+    font-size: 11px;
+    text-transform: uppercase;
+    text-align: center;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    z-index: 30;
+
+}
+
+.sale {
+  background-color: #e76029;
+  font-size: 16px;
+}
+
+.strap p {
+    position: relative;
+    top: 48%;
+    color: "#fff"
+
+    -webkit-transform: translateY(-50%);
+
+    -ms-transform: translateY(-50%);
+
+    transform: translateY(-50%);
+    line-height:1.15;
+    max-height: 28px;
+    max-width: 104px;
+    padding: 2px;
+
+}
+
+
+/* FOOTER */
+
+#foot {
+    position: absolute;
+    bottom: 0px;
+    width: 300px;
+    height: 64px;
+}
+
+
+#footer_ {
+    width: 300px;
+    height: 100%;
+    position: relative;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: #262626;
+    background-image: url('logo_arrows.png');
+    z-index: 1000;
+    background-size: 100%;
+
+}
+
+#right {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: transparent;
+    left: 5px;
+    top: 22px;
+    z-index: 100;
+    cursor: pointer;
+}
+
+#left {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: transparent;
+    left: 185px;
+    top: 22px;
+    /*border:1px solid red;*/
+    z-index: 100;
+    cursor: pointer;
+}
+
+#controls {
+    position: absolute;
+    left: 350px;
+    top: 20px;
+}
