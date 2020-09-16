@@ -151,10 +151,22 @@
     <Compile Include="avr_compiler.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="beunBoard_controlSerial.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="beunBoard_controlSerial.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="BNO080.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="BNO080.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="NMEA.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="NMEA.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="rotation.c">

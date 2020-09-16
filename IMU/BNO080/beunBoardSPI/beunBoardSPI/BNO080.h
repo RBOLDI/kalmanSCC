@@ -23,19 +23,20 @@
 #define CHANNEL_REPORTS 3
 //All the ways we can configure or talk to the BNO080, figure 34, page 36 reference manual
 //These are used for low level communication with the sensor, on channel 2
-#define SHTP_REPORT_COMMAND_RESPONSE 0xF1
-#define SHTP_REPORT_COMMAND_REQUEST 0xF2
+#define SHTP_REPORT_COMMAND_RESPONSE	0xF1
+#define SHTP_REPORT_COMMAND_REQUEST		0xF2
 #define SHTP_REPORT_PRODUCT_ID_RESPONSE 0xF8
-#define SHTP_REPORT_PRODUCT_ID_REQUEST 0xF9
+#define SHTP_REPORT_PRODUCT_ID_REQUEST	0xF9
 #define SHTP_REPORT_SET_FEATURE_COMMAND	0xFD
 #define SHTP_REPORT_BASE_TIMESTAMP		0xFB
 //All the different sensors and features we can get reports from
 //These are used when enabling a given sensor
-#define SENSOR_REPORTID_ACCELEROMETER		0x01
-#define SENSOR_REPORTID_GYROSCOPE			0x02
-#define SENSOR_REPORTID_MAGNETIC_FIELD		0x03
-#define SENSOR_REPORTID_LINEAR_ACCELERATION 0x04
-#define SENSOR_REPORTID_ROTATION_VECTOR		5
+#define SENSOR_REPORTID_ACCELEROMETER			0x01
+#define SENSOR_REPORTID_GYROSCOPE				0x02
+#define SENSOR_REPORTID_MAGNETIC_FIELD			0x03
+#define SENSOR_REPORTID_LINEAR_ACCELERATION		0x04
+#define SENSOR_REPORTID_ROTATION_VECTOR			0x05
+#define SENSOR_REPORTID_GAME_ROTATION_VECTOR	0X08
 //Record IDs from figure 29, page 29 reference manual
 //These are used to read the metadata for each sensor type
 

@@ -57,19 +57,19 @@ void update_AccelNorth(float *accelVector, float *accelVector_refNorth){
 
 void matrixOfMinors(float matrix[3][3], float minorMatrix[3][3]){
 	int index = 0;
-	float miniMatrix[4];	
+	float minors[4];	
 	for (int i = 0; i < 3; i++){
 		for(int j = 0; j < 3; j++){
 			//search within the matrix to the values needed to determine the minor
 			for (int ii = 0; ii < 3; ii++){
 				for(int jj = 0; jj < 3; jj++){
 					if(ii != i && jj != j){
-						miniMatrix[index++] = matrix[ii][jj];
+						minors[index++] = matrix[ii][jj];
 					}
 				}
 			}
 			index = 0;
-			minorMatrix[i][j] = miniMatrix[0]*miniMatrix[3] - miniMatrix[1]*miniMatrix[2];
+			minorMatrix[i][j] = minors[0]*minors[3] - minors[1]*minors[2];
 		}
 	}
 }
