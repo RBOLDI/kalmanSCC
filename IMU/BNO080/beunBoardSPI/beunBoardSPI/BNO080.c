@@ -30,6 +30,7 @@ uint8_t calibrationStatus;
 //These Q values are defined in the datasheet but can also be obtained by querying the meta data records
 //See the read metadata example for more info
 int16_t rotationVector_Q1 = 14;
+int16_t rotationVectorAccuracy_Q1 = 12; //Heading accuracy estimate in radians. The Q point is 12.
 int16_t accelerometer_Q1 = 8;
 int16_t linear_accelerometer_Q1 = 8;
 int16_t gyro_Q1 = 9;
@@ -82,6 +83,12 @@ float BNO080getGyroZ();
 float BNO080getMagX();
 float BNO080getMagX();
 float BNO080getMagX();
+//Rotation components
+float BNO080getQuatReal_W();		
+float BNO080getQuatI_X();
+float BNO080getQuatJ_Y();
+float BNO080getQuatK_Z();
+float BNO080getQuatRadianAccuracy();
 //Mode functions
 void BNO080getMode(void);
 //calibration functions
@@ -121,19 +128,19 @@ uint8_t BNO080BeginSPI(void){
 	PORTA.OUTSET = _RST;	//Bring out of reset
 	
 	//Wait for first assertion of INT before using WAK pin. Can take ~104ms
-	printf("- 1st wait\n");
+	//printf("- 1st wait\n");
 	BNO080waitForSPI();
 	
 	//At system startup, the hub must send its full advertisement message (see 5.2 and 5.3) to the
 	//host. It must not send any other data until this step is complete.
 	//When BNO080 first boots it broadcasts big startup packet
 	//Read it and dump it
-	printf("- 2nd wait\n");
+	//printf("- 2nd wait\n");
 	BNO080waitForSPI(); //Wait for assertion of INT before reading advert message.
 	BNO080receivePacket();
 	//The BNO080 will then transmit an unsolicited Initialize Response (see 6.4.5.2)
 	//Read it and dump it
-	printf("- 3rd wait\n");
+	//printf("- 3rd wait\n");
 	BNO080waitForSPI(); //Wait for assertion of INT before reading Init response
 	BNO080receivePacket();
 	
@@ -142,11 +149,11 @@ uint8_t BNO080BeginSPI(void){
 	shtpData[1] = 0;
 	
 	//Transmit packet on channel 2, 2 bytes
-	printf("-f BNO080sendPacket\n");
+	//printf("-f BNO080sendPacket\n");
 	BNO080sendPacket(CHANNEL_CONTROL, 2);
 	
 	//Now we wait for response
-	printf("- await packet\n");
+	//printf("- await packet\n");
 	BNO080waitForSPI();
 	if (BNO080receivePacket())
 	{
@@ -165,13 +172,13 @@ uint8_t BNO080waitForSPI(void){
 	{
 		if (CheckPinLevel(&PORTA, _INT) == LOW)
 		{
-			printf("_INT == LOW\n");
+		//	printf("_INT == LOW\n");
 			return 1;
 		}
 		_delay_ms(1);
 	}
 	//response failed
-	printf("SPI INT timeout\n");
+	//printf("SPI INT timeout\n");
 	return 0;
 }
 
@@ -189,24 +196,24 @@ bool BNO080sendPacket(uint8_t channelNumber, uint8_t dataLength){
 	PORTA.OUTCLR = _WAKE;
 	//Check for wake response BNO080
 	if(BNO080waitForSPI()) {
-		printf("BNO080 is awake!\n");
+	//	printf("BNO080 is awake!\n");
 		//Select the BNO080 and release from wake
 		PORTD.OUTCLR = SPI_SS_bm;
 		PORTA.OUTSET = _WAKE;
-		printf("Host send packet to BNO080\n");
+	//	printf("Host send packet to BNO080\n");
 		//Send the 4 byte packet header
 		spi_transfer((packetLength & 0xFF));
 		spi_transfer((packetLength >> 8));
 		spi_transfer(channelNumber);
 		spi_transfer((sequenceNumber[channelNumber]++));
 		for (uint8_t i = 0; i < dataLength; i++) {
-			printf("shtpdata[%d]: %d \n",i, shtpData[i]);
+		//	printf("shtpdata[%d]: %d \n",i, shtpData[i]);
 			spi_transfer(shtpData[i]);
 		}
 		
 		PORTD.OUTSET = SPI_SS_bm;
-		uint16_t lenght = ((uint16_t) (packetLength >> 8)<< 8 | (packetLength & 0xFF));
-		printf("-----Lenght = %d\n", lenght);
+		//uint16_t lenght = ((uint16_t) (packetLength >> 8)<< 8 | (packetLength & 0xFF));
+		//printf("-----Lenght = %d\n", lenght);
 		
 		return true;
 	}
@@ -215,7 +222,7 @@ bool BNO080sendPacket(uint8_t channelNumber, uint8_t dataLength){
 }
 
 void BNO080sendCommand(uint8_t command) {
-	printf("Send command\n");
+	//printf("Send command\n");
 	shtpData[0] = SHTP_REPORT_COMMAND_REQUEST;	//Command Request
 	shtpData[1] = commandSequenceNumber++;		//Increments automatically each function call
 	shtpData[2] = command;						//Command
@@ -282,10 +289,10 @@ void BNO080setFeatureCommand(uint8_t reportID, uint16_t timeBetweenReports, uint
 bool BNO080receivePacket(void){
 
 	if (!BNO080waitForSPI()){
-		printf("nothing to receive...\n");
+		//printf("nothing to receive...\n");
 		return false;
 	}
-	printf("ready to receive!\n");
+	//printf("ready to receive!\n");
 			
 	//SPI_MasterSSLow(ssPort, PIN4_bm);
 	PORTD.OUTCLR = SPI_SS_bm;
@@ -320,7 +327,7 @@ bool BNO080receivePacket(void){
 }
 
 void BNO080parseInputReport(void) {
-	printf("Parse input report \n");
+	//printf("Parse input report \n");
 	//Calculate the number of data bytes in this packet
 	int16_t dataLength = ((uint16_t)shtpHeader[1] << 8 | shtpHeader[0]);
 	dataLength &= ~(1 << 15); //Clear the MSbit. This bit indicates if this package is a continuation of the last.
@@ -378,6 +385,20 @@ void BNO080parseInputReport(void) {
 		rawMagZ = data3;
 		newDataReport = SENSOR_REPORTID_MAGNETIC_FIELD;
 	}
+	else if (shtpData[5] == SENSOR_REPORTID_ROTATION_VECTOR)
+	{
+		printf("ROTATION VECTOR\n");
+		quatAccuracy = status;
+		rawQuatI = data1;
+		rawQuatJ = data2;
+		rawQuatK = data3;
+		rawQuatReal = data4;
+
+		//Only available on rotation vector and ar/vr stabilized rotation vector,
+		// not game rot vector and not ar/vr stabilized rotation vector
+		rawQuatRadianAccuracy = data5;
+		newDataReport = SENSOR_REPORTID_ROTATION_VECTOR;
+	}
 }
 
 void BNO080enableRotationVector(uint16_t timeBetweenReports){
@@ -408,7 +429,7 @@ void BNO080enableMagnetometer(uint16_t timeBetweenReports){
 
 
 void BNO080parseCommandReport(void) {
-	printf("Parse command report \n");
+	//printf("Parse command report \n");
 	if (shtpData[0] == SHTP_REPORT_COMMAND_RESPONSE)
 	{
 		//The BNO080 responds with this report to command requests. It's up to use to remember which command we issued.
@@ -427,11 +448,11 @@ bool BNO080dataAvailable(void){
 	
 	if (BNO080receivePacket() == true)
 	{
-		printf("Received packet!\n");
+		//printf("Received packet!\n");
 		//Check to see if this packet is a sensor reporting its data to us
 		if (shtpHeader[2] == CHANNEL_REPORTS && shtpData[0] == SHTP_REPORT_BASE_TIMESTAMP){
 			BNO080parseInputReport();
-			printf("Data available!\n");
+			//printf("Data available!\n");
 			return (true);
 		}
 		else if (shtpHeader[2] == CHANNEL_CONTROL)
@@ -539,6 +560,41 @@ float BNO080getMagZ()
 {
 	float mag = qToFloat(rawMagZ, magnetometer_Q1);
 	return (mag);
+}
+
+//Return the rotation vector quaternion I_X
+float BNO080getQuatI_X()
+{
+	float quat = qToFloat(rawQuatI, rotationVector_Q1);
+	return (quat);
+}
+
+//Return the rotation vector quaternion J_Y
+float BNO080getQuatJ_Y()
+{
+	float quat = qToFloat(rawQuatJ, rotationVector_Q1);
+	return (quat);
+}
+
+//Return the rotation vector quaternion K_Z
+float BNO080getQuatK_Z()
+{
+	float quat = qToFloat(rawQuatK, rotationVector_Q1);
+	return (quat);
+}
+
+//Return the rotation vector quaternion Real_W
+float BNO080getQuatReal_W()
+{
+	float quat = qToFloat(rawQuatReal, rotationVector_Q1);
+	return (quat);
+}
+
+//Return the rotation vector accuracy
+float BNO080getQuatRadianAccuracy()
+{
+	float quat = qToFloat(rawQuatRadianAccuracy, rotationVectorAccuracy_Q1);
+	return (quat);
 }
 
 

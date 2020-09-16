@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<link rel="profile" href="https://gmpg.org/xfn/11">
+	<link media="all" href="https://www.sanfoundry.com/wp-content/cache/autoptimize/css/autoptimize_2d61625327a9f023fdae010534efecea.css" rel="stylesheet" /><title>C Program to Compute Determinant of a Matrix - Sanfoundry</title>
+
+
+<!-- This site is optimized with the Yoast SEO plugin v11.6 - https://yoast.com/wordpress/plugins/seo/ -->
+<link rel="canonical" href="https://www.sanfoundry.com/c-program-compute-determinant-matrix/" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="C Program to Compute Determinant of a Matrix - Sanfoundry" />
+<meta property="og:description" content="This C program computes the determinant of a matrix. Here is the source code of the C program to find determinant of a matrix. The C program is successfully compiled and run on a Linux system. The program output is also shown below. #include&lt;stdio.h&gt;&nbsp;int main&#040;&#041;&#123;&nbsp; int a&#091;3&#093;&#091;3&#093;, i, j;&nbsp; long determinant; printf&#040;&quot;Enter the 9 elements ... Read more" />
+<meta property="og:url" content="https://www.sanfoundry.com/c-program-compute-determinant-matrix/" />
+<meta property="og:site_name" content="Sanfoundry" />
+<meta property="article:section" content="C Algorithms - Numerical" />
+<meta property="article:published_time" content="2014-06-28T15:27:55+00:00" />
+<meta property="article:modified_time" content="2014-11-27T04:35:58+00:00" />
+<meta property="og:updated_time" content="2014-11-27T04:35:58+00:00" />
+<meta property="og:image" content="https://www.sanfoundry.com/wp-content/uploads/2014/08/C-Programming-1000-Algorithms.png" />
+<meta property="og:image:secure_url" content="https://www.sanfoundry.com/wp-content/uploads/2014/08/C-Programming-1000-Algorithms.png" />
+<meta property="og:image:width" content="203" />
+<meta property="og:image:height" content="203" />
+<script type='application/ld+json' class='yoast-schema-graph yoast-schema-graph--main'>{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://www.sanfoundry.com/#organization","name":"Sanfoundry","url":"https://www.sanfoundry.com/","sameAs":[],"logo":{"@type":"ImageObject","@id":"https://www.sanfoundry.com/#logo","url":"https://www.sanfoundry.com/wp-content/uploads/2017/02/sanfoundry-logo-180-180.png","width":180,"height":181,"caption":"Sanfoundry"},"image":{"@id":"https://www.sanfoundry.com/#logo"}},{"@type":"WebSite","@id":"https://www.sanfoundry.com/#website","url":"https://www.sanfoundry.com/","name":"Sanfoundry","publisher":{"@id":"https://www.sanfoundry.com/#organization"},"potentialAction":{"@type":"SearchAction","target":"https://www.sanfoundry.com/search/?q={search_term_string}","query-input":"required name=search_term_string"}},{"@type":"ImageObject","@id":"https://www.sanfoundry.com/c-program-compute-determinant-matrix/#primaryimage","url":"https://www.sanfoundry.com/wp-content/uploads/2014/08/C-Programming-1000-Algorithms.png","width":203,"height":203,"caption":"1000 Algorithms on C Programming"},{"@type":"WebPage","@id":"https://www.sanfoundry.com/c-program-compute-determinant-matrix/#webpage","url":"https://www.sanfoundry.com/c-program-compute-determinant-matrix/","inLanguage":"en-US","name":"C Program to Compute Determinant of a Matrix - Sanfoundry","isPartOf":{"@id":"https://www.sanfoundry.com/#website"},"primaryImageOfPage":{"@id":"https://www.sanfoundry.com/c-program-compute-determinant-matrix/#primaryimage"},"datePublished":"2014-06-28T15:27:55+00:00","dateModified":"2014-11-27T04:35:58+00:00"},{"@type":"Article","@id":"https://www.sanfoundry.com/c-program-compute-determinant-matrix/#article","isPartOf":{"@id":"https://www.sanfoundry.com/c-program-compute-determinant-matrix/#webpage"},"author":{"@id":"https://www.sanfoundry.com/#/schema/person/a44b93d21df2061ef9496683a42844f1"},"headline":"C Program to Compute Determinant of a Matrix","datePublished":"2014-06-28T15:27:55+00:00","dateModified":"2014-11-27T04:35:58+00:00","commentCount":0,"mainEntityOfPage":{"@id":"https://www.sanfoundry.com/c-program-compute-determinant-matrix/#webpage"},"publisher":{"@id":"https://www.sanfoundry.com/#organization"},"image":{"@id":"https://www.sanfoundry.com/c-program-compute-determinant-matrix/#primaryimage"},"articleSection":"C Algorithms - Numerical"},{"@type":["Person"],"@id":"https://www.sanfoundry.com/#/schema/person/a44b93d21df2061ef9496683a42844f1","name":"cguy3","sameAs":[]}]}</script>
+<!-- / Yoast SEO plugin. -->
+
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link href='https://fonts.gstatic.com' crossorigin rel='preconnect' />
+<link rel="alternate" type="application/rss+xml" title="Sanfoundry &raquo; Feed" href="https://www.sanfoundry.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Sanfoundry &raquo; Comments Feed" href="https://www.sanfoundry.com/comments/feed/" />
+
+<link rel='stylesheet' id='generate-fonts-css'  href='//fonts.googleapis.com/css?family=Open+Sans:300,300italic,regular,italic,600,600italic,700,700italic,800,800italic' type='text/css' media='all' />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel='https://api.w.org/' href='https://www.sanfoundry.com/wp-json/' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://www.sanfoundry.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://www.sanfoundry.com/wp-includes/wlwmanifest.xml" /> 
+
+<link rel='shortlink' href='https://www.sanfoundry.com/?p=66635' />
+<link rel="alternate" type="application/json+oembed" href="https://www.sanfoundry.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.sanfoundry.com%2Fc-program-compute-determinant-matrix%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://www.sanfoundry.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.sanfoundry.com%2Fc-program-compute-determinant-matrix%2F&#038;format=xml" />
+    <!-- MailerLite Universal -->
+    <script>
+        (function (m, a, i, l, e, r) {
+            m['MailerLiteObject'] = e;
+
+            function f() {
+                var c = {a: arguments, q: []};
+                var r = this.push(c);
+                return "number" != typeof r ? r : f.bind(c.q);
+            }
+
+            f.q = f.q || [];
+            m[e] = m[e] || f.bind(f.q);
+            m[e].q = m[e].q || f.q;
+            r = a.createElement(i);
+            var _ = a.getElementsByTagName(i)[0];
+            r.async = 1;
+            r.src = l + '?' + (~~(new Date().getTime() / 10000000));
+            _.parentNode.insertBefore(r, _);
+        })(window, document, 'script', 'https://static.mailerlite.com/js/universal.js', 'ml');
+
+        var ml_account = ml('accounts', '381541', 'z7o9v6x3r7', 'load');
+    </script>
+    <!-- End MailerLite Universal -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-25734021-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-25734021-1');
+</script>
+<script data-ad-client="ca-pub-7883691763951976" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script data-cfasync="false" type="text/javascript">(function(w, d) { var s = d.createElement('script'); s.src = '//cdn.adpushup.com/41319/adpushup.js'; s.type = 'text/javascript'; s.async = true; (d.getElementsByTagName('head')[0] || d.getElementsByTagName('body')[0]).appendChild(s); })(window, document);</script>
+    <script>(function(a,b,c,d,e){e=a.createElement(b);a=a.getElementsByTagName(b)[0];e.async=1;e.src=c;a.parentNode.insertBefore(e,a)})(document,'script','//hammerhearing.com/2a610c8ea226821d0a90e9c74b32d34c46d16031c8e6e697f6d45ad856f8a0aadbb5cde0d54ea15ba7f15f4f720c05508b37d46a267fc4346b8e95e73585');</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="https://www.sanfoundry.com/wp-content/uploads/2015/03/sanfoundry-favicon-120x120.png" sizes="32x32" />
+<link rel="icon" href="https://www.sanfoundry.com/wp-content/uploads/2015/03/sanfoundry-favicon.png" sizes="192x192" />
+<link rel="apple-touch-icon-precomposed" href="https://www.sanfoundry.com/wp-content/uploads/2015/03/sanfoundry-favicon.png" />
+<meta name="msapplication-TileImage" content="https://www.sanfoundry.com/wp-content/uploads/2015/03/sanfoundry-favicon.png" />
+</head>
+
+<body class="post-template-default single single-post postid-66635 single-format-standard wp-custom-logo wp-embed-responsive post-image-above-header post-image-aligned-center slideout-enabled slideout-mobile sticky-menu-no-transition sticky-enabled mobile-sticky-menu mobile-header mobile-header-logo mobile-header-sticky both-sidebars nav-below-header fluid-header separate-containers active-footer-widgets-1 nav-search-enabled nav-aligned-left header-aligned-left dropdown-hover featured-image-active" itemtype="https://schema.org/Blog" itemscope>
+	<a class="screen-reader-text skip-link" href="#content" title="Skip to content">Skip to content</a>		<nav id="mobile-header" data-auto-hide-sticky="true" class="main-navigation mobile-header-navigation has-branding has-sticky-branding" itemtype="https://schema.org/SiteNavigationElement" itemscope>
+			<div class="inside-navigation grid-container grid-parent">
+				<form method="get" class="search-form navigation-search" action="https://www.sanfoundry.com/search/">
+        <input type="search" placeholder=" Search" class="search-field" value="" name="q" title="Search" />
+        </form><div class="site-logo mobile-header-logo">
+					<a href="https://www.sanfoundry.com/" title="Sanfoundry" rel="home">
+						<img src="https://www.sanfoundry.com/wp-content/uploads/2020/02/sanfoundry-logo-horizontal-2.png" alt="Sanfoundry" />
+					</a>
+				</div>		<div class="mobile-bar-items">
+						<span class="search-item">
+				<a aria-label="Open Search Bar" href="#">
+									</a>
+			</span>
+		</div><!-- .mobile-bar-items -->
+							<button class="menu-toggle" aria-controls="mobile-menu" aria-expanded="false">
+						<span class="screen-reader-text">Menu</span>					</button>
+					<div id="mobile-menu" class="main-nav"><ul id="menu-offcanvasmobile" class=" menu sf-menu"><li id="menu-item-272828" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-272828"><a href="https://www.sanfoundry.com">Home</a></li>
+<li id="menu-item-269885" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-269885"><a href="#">Branchwise MCQs<span role="presentation" class="dropdown-menu-toggle"></span></a>
+<ul class="sub-menu">
+	<li id="menu-item-269898" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-269898"><a href="https://www.sanfoundry.com/programming-questions-answers/">Programming</a></li>
+	<li id="menu-item-272820" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-272820"><a href="#">CS &#8211; IT &#8211; IS<span role="presentation" class="dropdown-menu-toggle"></span></a>
+	<ul class="sub-menu">
+		<li id="menu-item-269883" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-269883"><a href="https://www.sanfoundry.com/computer-science-questions-answers/">CS</a></li>
+		<li id="menu-item-269887" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-269887"><a href="https://www.sanfoundry.com/information-technology-questions-answers/">IT</a></li>
+		<li id="menu-item-269888" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-269888"><a href="https://www.sanfoundry.com/information-science-questions-answers/">IS</a></li>
+	</ul>
+</li>
+	<li id="menu-item-272821" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-272821"><a href="#">ECE &#8211; EEE &#8211; EE<span role="presentation" class="dropdown-menu-toggle"></span></a>
+	<ul class="sub-menu">
+		<li id="menu-item-269903" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-269903"><a href="https://www.sanfoundry.com/electronics-communication-engineering-questions-answers/">ECE</a></li>
+		<li id="menu-item-269904" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-269904"><a href="https://www.sanfoundry.com/electrical-electronics-engineering-questions-answers/">EEE</a></li>
+		<li id="menu-item-269905" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-269905"><a href="https://www.sanfoundry.com/electrical-engineering-questions-answers/">EE</a></li>
+	</ul>
+</li>
+	<li id="menu-item-269906" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-269906"><a href="https://www.sanfoundry.com/civil-engineering-questions-answers/">Civil</a></li>
+	<li id="menu-item-269907" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-269907"><a href="https://www.sanfoundry.com/mechanical-engineering-questions-answers/">Mechanical</a></li>
+	<li id="menu-item-269913" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-269913"><a href="https://www.sanfoundry.com/chemical-engineering-questions-answers/">Chemical</a></li>
+	<li id="menu-item-269914" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-269914"><a href="https://www.sanfoundry.com/metallurgical-engineering-questions-answers/">Metallurgy</a></li>
+	<li id="menu-item-269915" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-269915"><a href="https://www.sanfoundry.com/instrumentation-engineering-questions-answers/">Instrumentation</a></li>
+	<li id="menu-item-269916" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-269916"><a href="https://www.sanfoundry.com/aerospace-engineering-questions-answers/">Aerospace</a></li>
+	<li id="menu-item-269917" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-269917"><a href="https://www.sanfoundry.com/aeronautical-engineering-questions-answers/">Aeronautical</a></li>
+	<li id="menu-item-269918" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-269918"><a href="https://www.sanfoundry.com/biotechnology-questions-answers/">Biotechnology</a></li>
+	<li id="menu-item-269919" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-269919"><a href="https://www.sanfoundry.com/agricultural-engineering-questions-answers/">Agriculture</a></li>
+	<li id="menu-item-269920" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-269920"><a href="https://www.sanfoundry.com/marine-engineering-questions-answers/">Marine</a></li>
+	<li id="menu-item-269921" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-269921"><a href="https://www.sanfoundry.com/master-computer-applications-questions-answers/">MCA</a></li>
+	<li id="menu-item-269922" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-269922"><a href="https://www.sanfoundry.com/bachelor-computer-applications-questions-answers/">BCA</a></li>
+</ul>
+</li>
+<li id="menu-item-269881" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-269881"><a href="#">Test &#038; Rank<span role="presentation" class="dropdown-menu-toggle"></span></a>
+<ul class="sub-menu">
+	<li id="menu-item-272830" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-272830"><a href="https://rank.sanfoundry.com/">Sanfoundry Tests</a></li>
+	<li id="menu-item-272822" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-272822"><a href="https://rank.sanfoundry.com/certification-tests/">Certification Tests</a></li>
+	<li id="menu-item-272823" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-272823"><a href="https://rank.sanfoundry.com/internship-tests/">Internship Tests</a></li>
+	<li id="menu-item-272824" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-272824"><a href="https://rank.sanfoundry.com/top-rankers/">Top-Rankers</a></li>
+</ul>
+</li>
+<li id="menu-item-287019" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-287019"><a href="https://www.sanfoundry.com/contests/">Contests</a></li>
+<li id="menu-item-269900" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-269900"><a href="https://www.sanfoundry.com/internship/">Internship</a></li>
+<li id="menu-item-269882" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-269882"><a href="https://www.sanfoundry.com/coursesfees/">Training</a></li>
+<li class="search-item"><a aria-label="Open Search Bar" href="#"></a></li></ul></div>			</div><!-- .inside-navigation -->
+		</nav><!-- #site-navigation -->
+				<nav id="site-navigation" class="auto-hide-sticky has-branding has-sticky-branding main-navigation" itemtype="https://schema.org/SiteNavigationElement" itemscope>
+			<div class="inside-navigation grid-container grid-parent">
+				<div class="navigation-branding"><div class="site-logo">
+					<a href="https://www.sanfoundry.com/" title="Sanfoundry" rel="home">
+						<img  class="header-image" alt="Sanfoundry" src="https://www.sanfoundry.com/wp-content/uploads/2020/02/sanfoundry-logo-horizontal-2.png" title="Sanfoundry" srcset="https://www.sanfoundry.com/wp-content/uploads/2020/02/sanfoundry-logo-horizontal-2.png 1x, https://www.sanfoundry.com/wp-content/uploads/2020/02/sanfoundry-logo-horizontal-2.png 2x" width="742" height="154" />
+					</a>
+				</div><div class="sticky-navigation-logo">
+				<a href="https://www.sanfoundry.com/" title="Sanfoundry" rel="home">
+					<img src="https://www.sanfoundry.com/wp-content/uploads/2017/02/sanfoundry-logo-180-180.png" alt="Sanfoundry" />
+				</a>
+			</div></div><form method="get" class="search-form navigation-search" action="https://www.sanfoundry.com/search/">
+        <input type="search" placeholder=" Search" class="search-field" value="" name="q" title="Search" />
+        </form>		<div class="mobile-bar-items">
+						<span class="search-item">
+				<a aria-label="Open Search Bar" href="#">
+									</a>
+			</span>
+		</div><!-- .mobile-bar-items -->
+						<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
+					<span class="screen-reader-text">Menu</span>				</button>
+				<div id="primary-menu" class="main-nav"><ul id="menu-offcanvasmobile-1" class=" menu sf-menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-272828"><a href="https://www.sanfoundry.com">Home</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-269885"><a href="#">Branchwise MCQs<span role="presentation" class="dropdown-menu-toggle"></span></a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-269898"><a href="https://www.sanfoundry.com/programming-questions-answers/">Programming</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-272820"><a href="#">CS &#8211; IT &#8211; IS<span role="presentation" class="dropdown-menu-toggle"></span></a>
+	<ul class="sub-menu">
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-269883"><a href="https://www.sanfoundry.com/computer-science-questions-answers/">CS</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-269887"><a href="https://www.sanfoundry.com/information-technology-questions-answers/">IT</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-269888"><a href="https://www.sanfoundry.com/information-science-questions-answers/">IS</a></li>
+	</ul>
+</li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-272821"><a href="#">ECE &#8211; EEE &#8211; EE<span role="presentation" class="dropdown-menu-toggle"></span></a>
+	<ul class="sub-menu">
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-269903"><a href="https://www.sanfoundry.com/electronics-communication-engineering-questions-answers/">ECE</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-269904"><a href="https://www.sanfoundry.com/electrical-electronics-engineering-questions-answers/">EEE</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-269905"><a href="https://www.sanfoundry.com/electrical-engineering-questions-answers/">EE</a></li>
+	</ul>
+</li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-269906"><a href="https://www.sanfoundry.com/civil-engineering-questions-answers/">Civil</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-269907"><a href="https://www.sanfoundry.com/mechanical-engineering-questions-answers/">Mechanical</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-269913"><a href="https://www.sanfoundry.com/chemical-engineering-questions-answers/">Chemical</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-269914"><a href="https://www.sanfoundry.com/metallurgical-engineering-questions-answers/">Metallurgy</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-269915"><a href="https://www.sanfoundry.com/instrumentation-engineering-questions-answers/">Instrumentation</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-269916"><a href="https://www.sanfoundry.com/aerospace-engineering-questions-answers/">Aerospace</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-269917"><a href="https://www.sanfoundry.com/aeronautical-engineering-questions-answers/">Aeronautical</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-269918"><a href="https://www.sanfoundry.com/biotechnology-questions-answers/">Biotechnology</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-269919"><a href="https://www.sanfoundry.com/agricultural-engineering-questions-answers/">Agriculture</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-269920"><a href="https://www.sanfoundry.com/marine-engineering-questions-answers/">Marine</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-269921"><a href="https://www.sanfoundry.com/master-computer-applications-questions-answers/">MCA</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-269922"><a href="https://www.sanfoundry.com/bachelor-computer-applications-questions-answers/">BCA</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-269881"><a href="#">Test &#038; Rank<span role="presentation" class="dropdown-menu-toggle"></span></a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-272830"><a href="https://rank.sanfoundry.com/">Sanfoundry Tests</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-272822"><a href="https://rank.sanfoundry.com/certification-tests/">Certification Tests</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-272823"><a href="https://rank.sanfoundry.com/internship-tests/">Internship Tests</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-272824"><a href="https://rank.sanfoundry.com/top-rankers/">Top-Rankers</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-287019"><a href="https://www.sanfoundry.com/contests/">Contests</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-269900"><a href="https://www.sanfoundry.com/internship/">Internship</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-269882"><a href="https://www.sanfoundry.com/coursesfees/">Training</a></li>
+<li class="search-item"><a aria-label="Open Search Bar" href="#"></a></li></ul></div>			</div><!-- .inside-navigation -->
+		</nav><!-- #site-navigation -->
+		
+	<div id="page" class="hfeed site grid-container container grid-parent">
+				<div id="content" class="site-content">
+			
+	<div id="primary" class="content-area grid-parent mobile-grid-100 push-20 grid-55 tablet-push-20 tablet-grid-55">
+		<main id="main" class="site-main">
+			
+<article id="post-66635" class="post-66635 post type-post status-publish format-standard has-post-thumbnail hentry category-c-algorithms-numerical" itemtype="https://schema.org/CreativeWork" itemscope>
+	<div class="inside-article">
+		<div id="sf-ads-mt-336-280" class="sf-mobile-ads">
+<div id="e25be634-2f62-4ed5-978b-3aaec04c8aca" class="_ap_apex_ad">
+<script>
+    var adpushup = adpushup || {};
+    adpushup.que = adpushup.que || [];
+    adpushup.que.push(function() {
+        adpushup.triggerAd("e25be634-2f62-4ed5-978b-3aaec04c8aca");
+    });
+</script>
+</div>
+</div>
+	
+		<header class="entry-header">
+			<h1 class="entry-title" itemprop="headline">C Program to Compute Determinant of a Matrix</h1>          <div style="padding: 0px 2px; margin: 20px 0px 0px 0px; border: 0px solid #E5E5E5; background: #FDFDFD;">
+          <div style="float: left; text-align: left; font-size:85%">
+          &laquo; <a href="https://www.sanfoundry.com/c-program-check-multiplicability-two-matrices/" rel="prev">Prev</a>          </div> <div style="float: right; text-align: right; font-size:85%">
+          <a href="https://www.sanfoundry.com/c-program-check-matrix-invertible/" rel="next">Next</a> &raquo;          </div><div style="clear:both";></div></div>
+         			<div class="entry-meta">
+							</div><!-- .entry-meta -->
+				</header><!-- .entry-header -->
+
+		
+		<div class="entry-content" itemprop="text">
+			<div style="text-align:justify">
+This C program computes the determinant of a matrix.</p>
+<p>Here is the source code of the C program to find determinant of a matrix. The C program is successfully compiled and run on a Linux system. The program output is also shown below.
+</p></div>
+
+
+<div class="hk1_style-wrap5"><div class="hk1_style-wrap4"><div class="hk1_style-wrap3"><div class="hk1_style-wrap2"><div class="hk1_style-wrap"><div class="hk1_style"><div class="c"><ol><li class="li1"><pre class="de1"><span class="co2">#include&lt;stdio.h&gt;</span></pre></li><li class="li1"><pre class="de1">&nbsp;</pre></li><li class="li1"><pre class="de1"><span class="kw4">int</span> main<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#123;</span></pre></li><li class="li1"><pre class="de1">&nbsp;</pre></li><li class="li1"><pre class="de1">  <span class="kw4">int</span> a<span class="br0">&#91;</span><span class="nu0">3</span><span class="br0">&#93;</span><span class="br0">&#91;</span><span class="nu0">3</span><span class="br0">&#93;</span><span class="sy0">,</span> i<span class="sy0">,</span> j<span class="sy0">;</span></pre></li><li class="li1"><pre class="de1">&nbsp;</pre></li><li class="li1"><pre class="de1">  <span class="kw4">long</span> determinant<span class="sy0">;</span></pre></li><li class="li1"><pre class="de1">  <span class="kw3">printf</span><span class="br0">&#40;</span><span class="st0">&quot;Enter the 9 elements of matrix: &quot;</span><span class="br0">&#41;</span><span class="sy0">;</span></pre></li><li class="li1"><pre class="de1">  <span class="kw1">for</span><span class="br0">&#40;</span>i <span class="sy0">=</span> <span class="nu0">0</span> <span class="sy0">;</span>i <span class="sy0">&lt;</span> <span class="nu0">3</span><span class="sy0">;</span>i<span class="sy0">++</span><span class="br0">&#41;</span></pre></li><li class="li1"><pre class="de1">      <span class="kw1">for</span><span class="br0">&#40;</span>j <span class="sy0">=</span> <span class="nu0">0</span><span class="sy0">;</span>j <span class="sy0">&lt;</span> <span class="nu0">3</span><span class="sy0">;</span>j<span class="sy0">++</span><span class="br0">&#41;</span></pre></li><li class="li1"><pre class="de1">           <span class="kw3">scanf</span><span class="br0">&#40;</span><span class="st0">&quot;%d&quot;</span><span class="sy0">,</span> <span class="sy0">&amp;</span>a<span class="br0">&#91;</span>i<span class="br0">&#93;</span><span class="br0">&#91;</span>j<span class="br0">&#93;</span><span class="br0">&#41;</span><span class="sy0">;</span></pre></li><li class="li1"><pre class="de1">&nbsp;</pre></li><li class="li1"><pre class="de1">  <span class="kw3">printf</span><span class="br0">&#40;</span><span class="st0">&quot;<span class="es1">\n</span>The matrix is<span class="es1">\n</span>&quot;</span><span class="br0">&#41;</span><span class="sy0">;</span></pre></li><li class="li1"><pre class="de1">  <span class="kw1">for</span><span class="br0">&#40;</span>i <span class="sy0">=</span> <span class="nu0">0</span><span class="sy0">;</span>i <span class="sy0">&lt;</span> <span class="nu0">3</span><span class="sy0">;</span> i<span class="sy0">++</span><span class="br0">&#41;</span><span class="br0">&#123;</span></pre></li><li class="li1"><pre class="de1">      <span class="kw3">printf</span><span class="br0">&#40;</span><span class="st0">&quot;<span class="es1">\n</span>&quot;</span><span class="br0">&#41;</span><span class="sy0">;</span></pre></li><li class="li1"><pre class="de1">      <span class="kw1">for</span><span class="br0">&#40;</span>j <span class="sy0">=</span> <span class="nu0">0</span><span class="sy0">;</span>j <span class="sy0">&lt;</span> <span class="nu0">3</span><span class="sy0">;</span> j<span class="sy0">++</span><span class="br0">&#41;</span></pre></li><li class="li1"><pre class="de1">           <span class="kw3">printf</span><span class="br0">&#40;</span><span class="st0">&quot;%d<span class="es1">\t</span>&quot;</span><span class="sy0">,</span> a<span class="br0">&#91;</span>i<span class="br0">&#93;</span><span class="br0">&#91;</span>j<span class="br0">&#93;</span><span class="br0">&#41;</span><span class="sy0">;</span></pre></li><li class="li1"><pre class="de1">  <span class="br0">&#125;</span></pre></li><li class="li1"><pre class="de1">&nbsp;</pre></li><li class="li1"><pre class="de1">  determinant <span class="sy0">=</span> a<span class="br0">&#91;</span><span class="nu0">0</span><span class="br0">&#93;</span><span class="br0">&#91;</span><span class="nu0">0</span><span class="br0">&#93;</span> <span class="sy0">*</span> <span class="br0">&#40;</span><span class="br0">&#40;</span>a<span class="br0">&#91;</span><span class="nu0">1</span><span class="br0">&#93;</span><span class="br0">&#91;</span><span class="nu0">1</span><span class="br0">&#93;</span><span class="sy0">*</span>a<span class="br0">&#91;</span><span class="nu0">2</span><span class="br0">&#93;</span><span class="br0">&#91;</span><span class="nu0">2</span><span class="br0">&#93;</span><span class="br0">&#41;</span> <span class="sy0">-</span> <span class="br0">&#40;</span>a<span class="br0">&#91;</span><span class="nu0">2</span><span class="br0">&#93;</span><span class="br0">&#91;</span><span class="nu0">1</span><span class="br0">&#93;</span><span class="sy0">*</span>a<span class="br0">&#91;</span><span class="nu0">1</span><span class="br0">&#93;</span><span class="br0">&#91;</span><span class="nu0">2</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="br0">&#41;</span> <span class="sy0">-</span>a<span class="br0">&#91;</span><span class="nu0">0</span><span class="br0">&#93;</span><span class="br0">&#91;</span><span class="nu0">1</span><span class="br0">&#93;</span> <span class="sy0">*</span> <span class="br0">&#40;</span>a<span class="br0">&#91;</span><span class="nu0">1</span><span class="br0">&#93;</span><span class="br0">&#91;</span><span class="nu0">0</span><span class="br0">&#93;</span></pre></li><li class="li1"><pre class="de1">   <span class="sy0">*</span> a<span class="br0">&#91;</span><span class="nu0">2</span><span class="br0">&#93;</span><span class="br0">&#91;</span><span class="nu0">2</span><span class="br0">&#93;</span> <span class="sy0">-</span> a<span class="br0">&#91;</span><span class="nu0">2</span><span class="br0">&#93;</span><span class="br0">&#91;</span><span class="nu0">0</span><span class="br0">&#93;</span> <span class="sy0">*</span> a<span class="br0">&#91;</span><span class="nu0">1</span><span class="br0">&#93;</span><span class="br0">&#91;</span><span class="nu0">2</span><span class="br0">&#93;</span><span class="br0">&#41;</span> <span class="sy0">+</span> a<span class="br0">&#91;</span><span class="nu0">0</span><span class="br0">&#93;</span><span class="br0">&#91;</span><span class="nu0">2</span><span class="br0">&#93;</span> <span class="sy0">*</span> <span class="br0">&#40;</span>a<span class="br0">&#91;</span><span class="nu0">1</span><span class="br0">&#93;</span><span class="br0">&#91;</span><span class="nu0">0</span><span class="br0">&#93;</span> <span class="sy0">*</span> a<span class="br0">&#91;</span><span class="nu0">2</span><span class="br0">&#93;</span><span class="br0">&#91;</span><span class="nu0">1</span><span class="br0">&#93;</span> <span class="sy0">-</span> a<span class="br0">&#91;</span><span class="nu0">2</span><span class="br0">&#93;</span><span class="br0">&#91;</span><span class="nu0">0</span><span class="br0">&#93;</span> <span class="sy0">*</span> a<span class="br0">&#91;</span><span class="nu0">1</span><span class="br0">&#93;</span><span class="br0">&#91;</span><span class="nu0">1</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="sy0">;</span></pre></li><li class="li1"><pre class="de1">&nbsp;</pre></li><li class="li1"><pre class="de1">  <span class="kw3">printf</span><span class="br0">&#40;</span><span class="st0">&quot;<span class="es1">\n</span>Determinant of 3X3 matrix: %ld&quot;</span><span class="sy0">,</span> determinant<span class="br0">&#41;</span><span class="sy0">;</span></pre></li><li class="li1"><pre class="de1">&nbsp;</pre></li><li class="li1"><pre class="de1">   <span class="kw1">return</span> <span class="nu0">0</span><span class="sy0">;</span></pre></li><li class="li1"><pre class="de1"><span class="br0">&#125;</span></pre></li></ol></div></div></div></div></div></div></div>
+
+
+<p></p>
+<div id="sf-ads-mi1-336-280" class="sf-mobile-ads">
+<div style="font-size:13px; text-align: center;">advertisement</div>
+<div id="e5da93a0-b61a-4789-96be-a57ebec165b0" class="_ap_apex_ad">
+<script>
+    var adpushup = adpushup || {};
+    adpushup.que = adpushup.que || [];
+    adpushup.que.push(function() {
+        adpushup.triggerAd("e5da93a0-b61a-4789-96be-a57ebec165b0");
+    });
+</script>
+</div>
+</div>
+	
+
+
+<div class="hk1_style-wrap5"><div class="hk1_style-wrap4"><div class="hk1_style-wrap3"><div class="hk1_style-wrap2"><div class="hk1_style-wrap"><div class="hk1_style"><div class="bash"><pre class="de1">$ <span class="kw2">gcc</span> determinant.c <span class="re5">-o</span> determinant
+$ .<span class="sy0">/</span>determinant
+&nbsp;
+Enter the <span class="nu0">9</span> elements of matrix: <span class="nu0">1</span> <span class="nu0">2</span> <span class="nu0">3</span> <span class="nu0">4</span> <span class="nu0">5</span> <span class="nu0">1</span> <span class="nu0">2</span> <span class="nu0">3</span> <span class="nu0">4</span>
+The matrix is
+&nbsp;
+<span class="nu0">1</span>	<span class="nu0">2</span>	<span class="nu0">3</span>	
+<span class="nu0">4</span>	<span class="nu0">5</span>	<span class="nu0">1</span>	
+<span class="nu0">2</span>	<span class="nu0">3</span>	<span class="nu0">4</span>	
+Determinant of 3X3 matrix: <span class="re5">-5</span></pre></div></div></div></div></div></div></div>
+
+
+<p><strong>Sanfoundry Global Education &#038; Learning Series – 1000 C Programs.</strong></p>
+<div id="sf-ads-mi2-336-280" class="sf-mobile-ads">
+<div style="font-size:13px; text-align: center;">advertisement</div>
+<div id="fdd9bf87-4faf-4493-82b4-e5538b31931a" class="_ap_apex_ad">
+<script>
+    var adpushup = adpushup || {};
+    adpushup.que = adpushup.que || [];
+    adpushup.que.push(function() {
+        adpushup.triggerAd("fdd9bf87-4faf-4493-82b4-e5538b31931a");
+    });
+</script>
+</div>
+</div>
+	
+<p><a href="https://www.sanfoundry.com/best-reference-books-c-programming-data-structures-algorithms/">Here&#8217;s the list of Best Reference Books in C Programming, Data Structures and Algorithms.</a></p>
+</p><div class="sf-nav-bottom">&laquo; <a href="https://www.sanfoundry.com/c-program-check-multiplicability-two-matrices/" rel="prev">Prev - C Program to Check Multiplicability of Two Matrices</a></div><div class="sf-nav-bottom">&raquo; <a href="https://www.sanfoundry.com/c-program-check-matrix-invertible/" rel="next">Next - C Program to Check if a Matrix is Invertible</a></div>		</div><!-- .entry-content -->
+
+					<footer class="entry-meta">
+				<span class="cat-links"><span class="screen-reader-text">Categories </span><a href="https://www.sanfoundry.com/category/c-algorithms-numerical/" rel="category tag">C Algorithms - Numerical</a></span> 		<nav id="nav-below" class="post-navigation">
+			<span class="screen-reader-text">Post navigation</span>
+
+			<div class="nav-previous"><span class="prev" title="Previous"><a href="https://www.sanfoundry.com/c-program-check-multiplicability-two-matrices/" rel="prev">C Program to Check Multiplicability of Two Matrices</a></span></div><div class="nav-next"><span class="next" title="Next"><a href="https://www.sanfoundry.com/java-program-construct-expression-tree-infix-expression/" rel="next">Java Program to Construct an Expression Tree for an Infix Expression</a></span></div>		</nav><!-- #nav-below -->
+					</footer><!-- .entry-meta -->
+		<div id="sf-ads-drbtf1" class="sf-desktop-ads">
+<div style="font-size:13px; text-align: center;">advertisement</div>
+<div id="7cee830d-5f11-4a2b-b356-93cc453475a0" class="_ap_apex_ad" max-height="300">
+<script>
+    var adpushup = adpushup || {};
+    adpushup.que = adpushup.que || [];
+    adpushup.que.push(function() {
+        adpushup.triggerAd("7cee830d-5f11-4a2b-b356-93cc453475a0");
+    });
+</script>
+</div>
+</div>
+
+<div id="sf-ads-mbtf1-336-280" class="sf-mobile-ads">
+<div style="font-size:13px; text-align: center;">advertisement</div>
+<div id="658ed863-6c61-464d-9aa2-c727da2a861a" class="_ap_apex_ad">
+<script>
+    var adpushup = adpushup || {};
+    adpushup.que = adpushup.que || [];
+    adpushup.que.push(function() {
+        adpushup.triggerAd("658ed863-6c61-464d-9aa2-c727da2a861a");
+    });
+</script>
+</div>
+</div>
+
+         
+	<div class="sf-post-yarpp">
+	<div class='yarpp-related'>
+<h3>Recommended Posts:</h3><ol>
+<li><a href="https://www.sanfoundry.com/c-programming-examples-data-structures/" rel="bookmark" title="C Programming Examples on Data-Structures">C Programming Examples on Data-Structures </a></li>
+<li><a href="https://www.sanfoundry.com/simple-c-programs/" rel="bookmark" title="Simple C Programs">Simple C Programs </a></li>
+<li><a href="https://www.sanfoundry.com/python-programming-examples-trees/" rel="bookmark" title="Python Programming Examples on Trees">Python Programming Examples on Trees </a></li>
+<li><a href="https://www.sanfoundry.com/java-programming-examples-numerical-problems-algorithms/" rel="bookmark" title="Java Programming Examples on Numerical Problems &amp; Algorithms">Java Programming Examples on Numerical Problems &amp; Algorithms </a></li>
+<li><a href="https://www.sanfoundry.com/c-programming-examples-combinatorial-problems-algorithms/" rel="bookmark" title="C Programming Examples on Combinatorial Problems &#038; Algorithms">C Programming Examples on Combinatorial Problems &#038; Algorithms </a></li>
+<li><a href="https://www.sanfoundry.com/c-programming-examples-without-using-recursion/" rel="bookmark" title="C Programming Examples without using Recursion">C Programming Examples without using Recursion </a></li>
+<li><a href="https://www.sanfoundry.com/c-programming-examples-on-trees/" rel="bookmark" title="C Programming Examples on Trees">C Programming Examples on Trees </a></li>
+<li><a href="https://www.sanfoundry.com/cpp-programming-examples-numerical-problems-algorithms/" rel="bookmark" title="C++ Programming Examples on Numerical Problems &amp; Algorithms">C++ Programming Examples on Numerical Problems &amp; Algorithms </a></li>
+<li><a href="https://www.sanfoundry.com/c-programming-examples-recursion/" rel="bookmark" title="C Programming Examples using Recursion">C Programming Examples using Recursion </a></li>
+<li><a href="https://www.sanfoundry.com/python-programming-examples-stacks-queues/" rel="bookmark" title="Python Programming Examples on Stacks &#038; Queues">Python Programming Examples on Stacks &#038; Queues </a></li>
+<li><a href="https://www.sanfoundry.com/c-programming-examples-numerical-problems-algorithms/" rel="bookmark" title="C Programming Examples on Numerical Problems &#038; Algorithms">C Programming Examples on Numerical Problems &#038; Algorithms </a></li>
+<li><a href="https://www.sanfoundry.com/java-programming-examples/" rel="bookmark" title="Java Programming Examples">Java Programming Examples </a></li>
+<li><a href="https://www.sanfoundry.com/c-programming-examples-stacks/" rel="bookmark" title="C Programming Examples on Stacks &#038; Queues">C Programming Examples on Stacks &#038; Queues </a></li>
+<li><a href="https://www.sanfoundry.com/java-programming-examples-collections/" rel="bookmark" title="Java Programming Examples on Collections">Java Programming Examples on Collections </a></li>
+<li><a href="https://www.sanfoundry.com/c-programming-examples/" rel="bookmark" title="C Programming Examples">C Programming Examples </a></li>
+<li><a href="https://www.sanfoundry.com/c-programming-examples-linked-list/" rel="bookmark" title="C Programming Examples on Linked List">C Programming Examples on Linked List </a></li>
+<li><a href="https://www.sanfoundry.com/python-programming-examples-linked-lists/" rel="bookmark" title="Python Programming Examples on Linked Lists">Python Programming Examples on Linked Lists </a></li>
+<li><a href="https://www.sanfoundry.com/java-programming-examples-arrays/" rel="bookmark" title="Java Programming Examples on Arrays">Java Programming Examples on Arrays </a></li>
+<li><a href="https://www.sanfoundry.com/csharp-programming-examples-on-matrix/" rel="bookmark" title="C# Programming Examples on Matrix">C# Programming Examples on Matrix </a></li>
+<li><a href="https://www.sanfoundry.com/c-programming-examples-matrix/" rel="bookmark" title="C Programming Examples on Matrix">C Programming Examples on Matrix </a></li>
+</ol>
+</div>
+	</div>
+	
+<div id="sf-ads-mbtf2-336-280" class="sf-mobile-ads">
+<div style="font-size:13px; text-align: center;">advertisement</div>
+<div id="eab65a1c-02cc-479a-a712-c5f542208b0a" class="_ap_apex_ad">
+<script>
+    var adpushup = adpushup || {};
+    adpushup.que = adpushup.que || [];
+    adpushup.que.push(function() {
+        adpushup.triggerAd("eab65a1c-02cc-479a-a712-c5f542208b0a");
+    });
+</script>
+</div>
+</div>
+
+        	</div><!-- .inside-article -->
+</article><!-- #post-## -->
+ 
+<div class="sf-post-bio">
+<div style="float: left; padding-right: 10px;">
+<img src="//www.sanfoundry.com/wp-content/uploads/2017/01/Manish2.png" class="aligncenter" width="150px" height="150px">
+</div>
+<a href="https://www.sanfoundry.com/about/">Manish Bhojasia</a>, a technology veteran with 20+ years @ Cisco & Wipro, is Founder and CTO at Sanfoundry. He is Linux Kernel Developer & SAN Architect and is passionate about competency developments in these areas. He lives in Bangalore and delivers focused training sessions to IT professionals in Linux Kernel, Linux Debugging, Linux Device Drivers, Linux Networking, Linux Storage, Advanced C Programming, SAN Storage Technologies, SCSI Internals & Storage Protocols such as iSCSI & Fiber Channel. Stay connected with him @
+<a href="https://www.linkedin.com/in/manishbhojasia">LinkedIn</a> 
+<div style="clear: left;"></div>
+</div>
+         
+        <div class="sf-post-mailerlite">
+        <script type="text/javascript" src="//app.mailerlite.com/data/webforms/63357/t9m0n1.js?v3"></script>
+        </div>
+        		</main><!-- #main -->
+	</div><!-- #primary -->
+
+	<div id="left-sidebar" class="widget-area grid-20 tablet-grid-20 mobile-grid-100 grid-parent sidebar pull-55 tablet-pull-55" itemtype="https://schema.org/WPSideBar" itemscope>
+	<div class="inside-left-sidebar">
+		<aside id="custom_html-193" class="widget_text widget inner-padding widget_custom_html"><div class="textwidget custom-html-widget">
+
+<h2 class="sf-widget-title">Interview Preparation</h2>
+<div class="sf-postw-category">
+<span class="collapseomatic " id="id5f40858e418be"  tabindex="" title="C Algorithms"    >C Algorithms</span><div id="target-id5f40858e418be" class="collapseomatic_content ">
+<li><a href="https://www.sanfoundry.com/c-programming-examples-numerical-problems-algorithms/">C - Numerical Problems</a></li>
+<li><a href="https://www.sanfoundry.com/c-programming-examples-combinatorial-problems-algorithms/">C - Combinatorial Problems</a></li>
+<li><a href="https://www.sanfoundry.com/c-programming-examples-graph-problems-algorithms/">C - Graph Problems</a></li>
+<li><a href="https://www.sanfoundry.com/c-programming-examples-hard-graph-problems-algorithms/">C - Hard Graph Problems</a></li>
+<li><a href="https://www.sanfoundry.com/c-programming-examples-computational-geometry-problems-algorithms/">C - Computation Geometry</a></li>
+<li><a href="https://www.sanfoundry.com/c-programming-examples-set-string-problems-algorithms/">C - Sets & Strings</a></li>
+<li><a href="https://www.sanfoundry.com/c-programming-examples-data-structures/">C - Data-Structures</a></li>
+</div>
+<span class="collapseomatic " id="id5f40858e418de"  tabindex="" title="C++ Algorithms"    >C++ Algorithms</span><div id="target-id5f40858e418de" class="collapseomatic_content ">
+<li><a href="https://www.sanfoundry.com/cpp-programming-examples-numerical-problems-algorithms/">C++ - Numerical Problems</a></li>
+<li><a href="https://www.sanfoundry.com/cpp-programming-examples-combinatorial-problems-algorithms/">C++ - Combinatorial Problems</a></li>
+<li><a href="https://www.sanfoundry.com/cpp-programming-examples-graph-problems-algorithms/">C++ - Graph Problems</a></li>
+<li><a href="https://www.sanfoundry.com/cpp-programming-examples-hard-graph-problems-algorithms/">C++ - Hard Graph Problems</a></li>
+<li><a href="https://www.sanfoundry.com/cpp-programming-examples-computational-geometry-problems-algorithms/">C++ - Computation Geometry</a></li>
+<li><a href="https://www.sanfoundry.com/cpp-programming-examples-set-string-problems-algorithms/">C++ - Sets & Strings</a></li>
+<li><a href="https://www.sanfoundry.com/cpp-programming-examples-data-structures/">C++ - Data-Structures</a></li>
+<li><a href="https://www.sanfoundry.com/cpp-programming-examples-stl/">C++ - STL Library</a></li>
+</div>
+<span class="collapseomatic " id="id5f40858e418ee"  tabindex="" title="Java Algorithms"    >Java Algorithms</span><div id="target-id5f40858e418ee" class="collapseomatic_content ">
+<li><a href="https://www.sanfoundry.com/java-programming-examples-numerical-problems-algorithms/">Java - Numerical Problems</a></li>
+<li><a href="https://www.sanfoundry.com/java-programming-examples-combinatorial-problems-algorithms/">Java - Combinatorial Problems</a></li>
+<li><a href="https://www.sanfoundry.com/java-programming-examples-graph-problems-algorithms/">Java - Graph Problems</a></li>
+<li><a href="https://www.sanfoundry.com/java-programming-examples-hard-graph-problems-algorithms/">Java - Hard Graph Problems</a></li>
+<li><a href="https://www.sanfoundry.com/java-programming-examples-computational-geometry-problems-algorithms/">Java - Computation Geometry</a></li>
+<li><a href="https://www.sanfoundry.com/java-programming-examples-set-string-problems-algorithms/">Java - Sets & Strings</a></li>
+<li><a href="https://www.sanfoundry.com/java-programming-examples-data-structures/">Java - Data-Structures</a></li>
+<li><a href="https://www.sanfoundry.com/java-programming-examples-collection-api/">Java - Collection API Problems</a></li>
+</div>
+<span class="collapseomatic " id="id5f40858e418fa"  tabindex="" title="Python Problems"    >Python Problems</span><div id="target-id5f40858e418fa" class="collapseomatic_content ">
+<li><a href="https://www.sanfoundry.com/python-problems-solutions/">Python Problems</a></li>
+</div>
+<span class="collapseomatic " id="id5f40858e41905"  tabindex="" title="Dynamic Programming"    >Dynamic Programming</span><div id="target-id5f40858e41905" class="collapseomatic_content ">
+<li><a href="https://www.sanfoundry.com/dynamic-programming-problems-solutions/">Dynamic Programming</a></li>
+</div>
+<span class="collapseomatic  colomat-close" id="id5f40858e41912"  tabindex="" title="Data Structures MCQs"    >Data Structures MCQs</span><div id="target-id5f40858e41912" class="collapseomatic_content ">
+<li><a href="https://www.sanfoundry.com/1000-data-structure-questions-answers/">Data Structures I</a></li>
+<li><a href="https://www.sanfoundry.com/1000-data-structures-algorithms-ii-questions-answers/">Data Structures II</a></li>
+</div>
+</div>
+
+<div id="sf-ads-dlm-160-600" class="sf-desktop-ads">
+<div id="f932df55-402b-4eb3-99df-f6f2e564b548" class="_ap_apex_ad">
+<script>
+    var adpushup = adpushup || {};
+    adpushup.que = adpushup.que || [];
+    adpushup.que.push(function() {
+        adpushup.triggerAd("f932df55-402b-4eb3-99df-f6f2e564b548");
+    });
+</script>
+</div>
+</div>
+	
+<div class="sf-postw-category">
+<span class="collapseomatic  colomat-close" id="id5f40858e41929"  tabindex="" title="Programming Language MCQs"    >Programming Language MCQs</span><div id="target-id5f40858e41929" class="collapseomatic_content ">
+<li><a href="https://www.sanfoundry.com/1000-python-questions-answers/">Python MCQs</a></li>
+<li><a href="https://www.sanfoundry.com/java-questions-answers-freshers-experienced/">Java MCQs</a></li>
+<li><a href="https://www.sanfoundry.com/c-interview-questions-answers/">C MCQs</a></li>
+<li><a href="https://www.sanfoundry.com/cplusplus-interview-questions-answers/">C++ MCQs</a></li>
+<li><a href="https://www.sanfoundry.com/csharp-questions-answers/">C# MCQs</a></li>
+<li><a href="https://www.sanfoundry.com/technical-interview-questions/">Linux MCQs</a></li>
+<li><a href="https://www.sanfoundry.com/php-questions-answers/">PHP Questions</a></li>
+</div>
+<span class="collapseomatic " id="id5f40858e41937"  tabindex="" title="C Programming Examples"    >C Programming Examples</span><div id="target-id5f40858e41937" class="collapseomatic_content ">
+<li><a href="https://www.sanfoundry.com/simple-c-programs/">Simple C Programs</a></li>
+<li><a href="https://www.sanfoundry.com/c-programming-examples-arrays/">C - Arrays</a></li>
+<li><a href="https://www.sanfoundry.com/c-programming-examples-matrix/">C - Matrix</a></li>
+<li><a href="https://www.sanfoundry.com/c-programming-examples-strings/">C - Strings</a></li>
+<li><a href="https://www.sanfoundry.com/c-programming-examples-bitwise-operations/">C - Bitwise Operations</a></li>
+<li><a href="https://www.sanfoundry.com/c-programming-examples-linked-list/">C - Linked Lists</a></li>
+<li><a href="https://www.sanfoundry.com/c-programming-examples-stacks/">C - Stacks & Queues</a></li>
+<li><a href="https://www.sanfoundry.com/c-programming-examples-searching-sorting/">C - Searching & Sorting</a></li>
+<li><a href="https://www.sanfoundry.com/c-programming-examples-on-trees/">C - Trees</a></li>
+<li><a href="https://www.sanfoundry.com/c-programming-examples-strings/">C - Strings</a></li>
+<li><a href="https://www.sanfoundry.com/c-programming-examples-file-handling/">C - File Handling</a></li>
+<li><a href="https://www.sanfoundry.com/c-programming-examples-mathematical-functions/">C - Mathematical Functions</a></li>
+<li><a href="https://www.sanfoundry.com/c-programming-examples-on-puzzles-games/">C - Puzzles & Games</a></li>
+<li><a href="https://www.sanfoundry.com/c-programming-examples-recursion/">C Programs - Recursion</a></li>
+<li><a href="https://www.sanfoundry.com/c-programming-examples-without-using-recursion/">C Programs - No Recursion</a></li>
+</div>
+</div>
+
+
+</div></aside><aside id="text-292" class="widget inner-padding widget_text">			<div class="textwidget">
+<div id="sf-ads-dlb-160-600" class="sf-desktop-ads">
+<div id="c02687cc-e3c1-4ea4-9bc7-d8fafbd90b16" class="_ap_apex_ad">
+<script>
+    var adpushup = adpushup || {};
+    adpushup.que = adpushup.que || [];
+    adpushup.que.push(function() {
+        adpushup.triggerAd("c02687cc-e3c1-4ea4-9bc7-d8fafbd90b16");
+    });
+</script>
+</div>
+</div>
+        </div>
+		</aside>	</div><!-- .inside-left-sidebar -->
+</div><!-- #secondary -->
+<div id="right-sidebar" class="widget-area grid-25 tablet-grid-25 grid-parent sidebar" itemtype="https://schema.org/WPSideBar" itemscope>
+	<div class="inside-right-sidebar">
+		<aside id="text-294" class="widget inner-padding widget_text">			<div class="textwidget">
+<div id="sf-ads-drt-300-250" class="sf-desktop-ads">
+<div id="e2124771-3969-40d9-b49f-be6ca0ef9aeb" class="_ap_apex_ad">
+<script>
+    var adpushup = adpushup || {};
+    adpushup.que = adpushup.que || [];
+    adpushup.que.push(function() {
+        adpushup.triggerAd("e2124771-3969-40d9-b49f-be6ca0ef9aeb");
+    });
+</script>
+</div>
+</div>
+        </div>
+		</aside><aside id="custom_html-5" class="widget_text widget inner-padding widget_custom_html"><h2 class="widget-title">Part Time Internships @ Home</h2><div class="textwidget custom-html-widget"><li><a href="https://docs.google.com/forms/d/e/1FAIpQLSdWRbY9_5s-9vqgIyWnAi7KZ7GUC5V7qMteOwI9Qsa9YpE4uw/viewform" target="_blank">1-Day Campus Ambassador</a></li>
+<li><a href="https://docs.google.com/forms/d/e/1FAIpQLScBfsuts4J3XELCAbOKRf6Wqppy_YHrNjufy60KyiuS218ifQ/viewform" target="_blank">Content Developer</a></li>
+<li><a href="https://docs.google.com/forms/d/e/1FAIpQLSdugiifcncYVSzBql9ZAnQ0jLMNr9vLfGX2FzIWqOgLqpoF1A/viewform" target="_blank">Content Writer</a></li>
+<li><a href="https://docs.google.com/forms/d/e/1FAIpQLSeB-YPyaDXsd3r3t4gpC0aTbXqurFwJwENQEXkcej8yY0mk3A/viewform" target="_blank">Programmer</a></li>
+<li><a href="https://docs.google.com/forms/d/e/1FAIpQLSftoXzbkt7Hvio7td-YU-lSOaraV9gybduPCO9sfoU9f5dxJA/viewform" target="_blank">Digital Marketer</a></li></div></aside><aside id="text-295" class="widget inner-padding widget_text">			<div class="textwidget">
+<div id="sf-ads-drm-300-600" class="sf-desktop-ads">
+<div id="c702df7a-db9a-4387-b99f-0010e56c9aeb" class="_ap_apex_ad">
+<script>
+    var adpushup = adpushup || {};
+    adpushup.que = adpushup.que || [];
+    adpushup.que.push(function() {
+        adpushup.triggerAd("c702df7a-db9a-4387-b99f-0010e56c9aeb");
+    });
+</script>
+</div>
+</div>
+	</div>
+		</aside><aside id="custom_html-3" class="widget_text widget inner-padding widget_custom_html"><h2 class="widget-title">Evergreen Careers</h2><div class="textwidget custom-html-widget"><li><a href="https://www.sanfoundry.com/salary-50l/">Developer Tracks</a></li>
+<li><a href="https://www.sanfoundry.com/linux-kernel-developer-training-courses-jobs/">Linux Kernel Developer</a></li>
+<li><a href="https://www.sanfoundry.com/linux-device-driver-developer-training/">Linux Driver Developer</a></li>
+<li><a href="https://www.sanfoundry.com/linux-network-developer-training/">Linux Network Developer</a></li>
+<li><a href="https://www.sanfoundry.com/san-storage-developer-training-courses/">SAN Developer</a></li></div></aside><aside id="text-296" class="widget inner-padding widget_text">			<div class="textwidget">
+<div id="sf-ads-drb-300-600" class="sf-desktop-ads">
+<div id="f1f620fc-81f8-425a-ac0f-57d3c30d77b0" class="_ap_apex_ad">
+<script>
+    var adpushup = adpushup || {};
+    adpushup.que = adpushup.que || [];
+    adpushup.que.push(function() {
+        adpushup.triggerAd("f1f620fc-81f8-425a-ac0f-57d3c30d77b0");
+    });
+</script>
+</div>
+</div>
+	</div>
+		</aside>	</div><!-- .inside-right-sidebar -->
+</div><!-- #secondary -->
+
+	</div><!-- #content -->
+</div><!-- #page -->
+
+
+<div class="site-footer">
+				<div id="footer-widgets" class="site footer-widgets">
+				<div class="footer-widgets-container grid-container grid-parent">
+					<div class="inside-footer-widgets">
+							<div class="footer-widget-1 grid-parent grid-100 tablet-grid-50 mobile-grid-100">
+		<aside id="custom_html-386" class="widget_text widget inner-padding widget_custom_html"><div class="textwidget custom-html-widget"><div style="text-align:center;">
+<a href="https://www.sanfoundry.com/about/">About</a> | <a href="https://rank.sanfoundry.com/certification-tests/">Certifications</a> | <a href="https://www.sanfoundry.com/internship/">Internships</a> | <a href="https://www.sanfoundry.com/jobs/">Jobs</a> | <a href="https://www.sanfoundry.com/privacy-policy/">Privacy Policy</a> | <a href="https://www.sanfoundry.com/tos-privacy-policy/">Terms</a> | <a href="https://www.sanfoundry.com/copyright/">Copyright</a> | <a href="https://www.sanfoundry.com/contact/">Contact</a> 
+</div></div></aside><aside id="lsi_widget-2" class="widget inner-padding widget_lsi_widget"><ul class="lsi-social-icons icon-set-lsi_widget-2" style="text-align: center"><li class="lsi-social-facebook"><a class="" rel="nofollow noopener noreferrer" title="Facebook" aria-label="Facebook" href="https://www.facebook.com/sanfoundry" target="_blank"><i class="lsicon lsicon-facebook"></i></a></li><li class="lsi-social-linkedin"><a class="" rel="nofollow noopener noreferrer" title="LinkedIn" aria-label="LinkedIn" href="https://www.linkedin.com/company/sanfoundry" target="_blank"><i class="lsicon lsicon-linkedin"></i></a></li><li class="lsi-social-twitter"><a class="" rel="nofollow noopener noreferrer" title="Twitter" aria-label="Twitter" href="https://www.twitter.com/sanfoundry" target="_blank"><i class="lsicon lsicon-twitter"></i></a></li><li class="lsi-social-instagram"><a class="" rel="nofollow noopener noreferrer" title="Instagram" aria-label="Instagram" href="https://www.instagram.com/sanfoundry" target="_blank"><i class="lsicon lsicon-instagram"></i></a></li><li class="lsi-social-pinterest"><a class="" rel="nofollow noopener noreferrer" title="Pinterest" aria-label="Pinterest" href="https://www.pinterest.com/sanfoundry/" target="_blank"><i class="lsicon lsicon-pinterest"></i></a></li><li class="lsi-social-youtube"><a class="" rel="nofollow noopener noreferrer" title="YouTube" aria-label="YouTube" href="https://www.youtube.com/channel/UCSChvjABHchZa5fcxAP4IEQ" target="_blank"><i class="lsicon lsicon-youtube"></i></a></li></ul></aside>	</div>
+						</div>
+				</div>
+			</div>
+				<footer class="site-info" itemtype="https://schema.org/WPFooter" itemscope>
+			<div class="inside-site-info grid-container grid-parent">
+								<div class="copyright-bar">
+					&copy; 2011-2020 Sanfoundry. All Rights Reserved.				</div>
+			</div>
+		</footer><!-- .site-info -->
+		</div><!-- .site-footer -->
+
+<a title="Scroll back to top" rel="nofollow" href="#" class="generate-back-to-top" style="opacity:0;visibility:hidden;" data-scroll-speed="400" data-start-scroll="300">
+				<span class="screen-reader-text">Scroll back to top</span>
+				
+			</a>		<nav id="generate-slideout-menu" class="main-navigation slideout-navigation" itemtype="https://schema.org/SiteNavigationElement" itemscope style="display: none;">
+			<div class="inside-navigation grid-container grid-parent">
+				<div class="main-nav"><ul id="menu-offcanvasmobile-2" class=" slideout-menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-272828"><a href="https://www.sanfoundry.com">Home</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-269885"><a href="#">Branchwise MCQs<span role="presentation" class="dropdown-menu-toggle"></span></a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-269898"><a href="https://www.sanfoundry.com/programming-questions-answers/">Programming</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-272820"><a href="#">CS &#8211; IT &#8211; IS<span role="presentation" class="dropdown-menu-toggle"></span></a>
+	<ul class="sub-menu">
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-269883"><a href="https://www.sanfoundry.com/computer-science-questions-answers/">CS</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-269887"><a href="https://www.sanfoundry.com/information-technology-questions-answers/">IT</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-269888"><a href="https://www.sanfoundry.com/information-science-questions-answers/">IS</a></li>
+	</ul>
+</li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-272821"><a href="#">ECE &#8211; EEE &#8211; EE<span role="presentation" class="dropdown-menu-toggle"></span></a>
+	<ul class="sub-menu">
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-269903"><a href="https://www.sanfoundry.com/electronics-communication-engineering-questions-answers/">ECE</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-269904"><a href="https://www.sanfoundry.com/electrical-electronics-engineering-questions-answers/">EEE</a></li>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-269905"><a href="https://www.sanfoundry.com/electrical-engineering-questions-answers/">EE</a></li>
+	</ul>
+</li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-269906"><a href="https://www.sanfoundry.com/civil-engineering-questions-answers/">Civil</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-269907"><a href="https://www.sanfoundry.com/mechanical-engineering-questions-answers/">Mechanical</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-269913"><a href="https://www.sanfoundry.com/chemical-engineering-questions-answers/">Chemical</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-269914"><a href="https://www.sanfoundry.com/metallurgical-engineering-questions-answers/">Metallurgy</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-269915"><a href="https://www.sanfoundry.com/instrumentation-engineering-questions-answers/">Instrumentation</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-269916"><a href="https://www.sanfoundry.com/aerospace-engineering-questions-answers/">Aerospace</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-269917"><a href="https://www.sanfoundry.com/aeronautical-engineering-questions-answers/">Aeronautical</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-269918"><a href="https://www.sanfoundry.com/biotechnology-questions-answers/">Biotechnology</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-269919"><a href="https://www.sanfoundry.com/agricultural-engineering-questions-answers/">Agriculture</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-269920"><a href="https://www.sanfoundry.com/marine-engineering-questions-answers/">Marine</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-269921"><a href="https://www.sanfoundry.com/master-computer-applications-questions-answers/">MCA</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-269922"><a href="https://www.sanfoundry.com/bachelor-computer-applications-questions-answers/">BCA</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-269881"><a href="#">Test &#038; Rank<span role="presentation" class="dropdown-menu-toggle"></span></a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-272830"><a href="https://rank.sanfoundry.com/">Sanfoundry Tests</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-272822"><a href="https://rank.sanfoundry.com/certification-tests/">Certification Tests</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-272823"><a href="https://rank.sanfoundry.com/internship-tests/">Internship Tests</a></li>
+	<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-272824"><a href="https://rank.sanfoundry.com/top-rankers/">Top-Rankers</a></li>
+</ul>
+</li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-287019"><a href="https://www.sanfoundry.com/contests/">Contests</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-269900"><a href="https://www.sanfoundry.com/internship/">Internship</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-269882"><a href="https://www.sanfoundry.com/coursesfees/">Training</a></li>
+</ul></div><aside id="custom_html-194" class="widget_text slideout-widget widget_custom_html"><div class="textwidget custom-html-widget">
+<h2 class="sf-widget-title">Interview Preparation</h2>
+<div class="sf-postw-category">
+<span class="collapseomatic " id="id5f40858e48169"  tabindex="" title="C Algorithms"    >C Algorithms</span><div id="target-id5f40858e48169" class="collapseomatic_content ">
+<li><a href="https://www.sanfoundry.com/c-programming-examples-numerical-problems-algorithms/">C - Numerical Problems</a></li>
+<li><a href="https://www.sanfoundry.com/c-programming-examples-combinatorial-problems-algorithms/">C - Combinatorial Problems</a></li>
+<li><a href="https://www.sanfoundry.com/c-programming-examples-graph-problems-algorithms/">C - Graph Problems</a></li>
+<li><a href="https://www.sanfoundry.com/c-programming-examples-hard-graph-problems-algorithms/">C - Hard Graph Problems</a></li>
+<li><a href="https://www.sanfoundry.com/c-programming-examples-computational-geometry-problems-algorithms/">C - Computation Geometry</a></li>
+<li><a href="https://www.sanfoundry.com/c-programming-examples-set-string-problems-algorithms/">C - Sets & Strings</a></li>
+<li><a href="https://www.sanfoundry.com/c-programming-examples-data-structures/">C - Data-Structures</a></li>
+</div>
+<span class="collapseomatic " id="id5f40858e4818b"  tabindex="" title="C++ Algorithms"    >C++ Algorithms</span><div id="target-id5f40858e4818b" class="collapseomatic_content ">
+<li><a href="https://www.sanfoundry.com/cpp-programming-examples-numerical-problems-algorithms/">C++ - Numerical Problems</a></li>
+<li><a href="https://www.sanfoundry.com/cpp-programming-examples-combinatorial-problems-algorithms/">C++ - Combinatorial Problems</a></li>
+<li><a href="https://www.sanfoundry.com/cpp-programming-examples-graph-problems-algorithms/">C++ - Graph Problems</a></li>
+<li><a href="https://www.sanfoundry.com/cpp-programming-examples-hard-graph-problems-algorithms/">C++ - Hard Graph Problems</a></li>
+<li><a href="https://www.sanfoundry.com/cpp-programming-examples-computational-geometry-problems-algorithms/">C++ - Computation Geometry</a></li>
+<li><a href="https://www.sanfoundry.com/cpp-programming-examples-set-string-problems-algorithms/">C++ - Sets & Strings</a></li>
+<li><a href="https://www.sanfoundry.com/cpp-programming-examples-data-structures/">C++ - Data-Structures</a></li>
+<li><a href="https://www.sanfoundry.com/cpp-programming-examples-stl/">C++ - STL Library</a></li>
+</div>
+<span class="collapseomatic " id="id5f40858e481a8"  tabindex="" title="Java Algorithms"    >Java Algorithms</span><div id="target-id5f40858e481a8" class="collapseomatic_content ">
+<li><a href="https://www.sanfoundry.com/java-programming-examples-numerical-problems-algorithms/">Java - Numerical Problems</a></li>
+<li><a href="https://www.sanfoundry.com/java-programming-examples-combinatorial-problems-algorithms/">Java - Combinatorial Problems</a></li>
+<li><a href="https://www.sanfoundry.com/java-programming-examples-graph-problems-algorithms/">Java - Graph Problems</a></li>
+<li><a href="https://www.sanfoundry.com/java-programming-examples-hard-graph-problems-algorithms/">Java - Hard Graph Problems</a></li>
+<li><a href="https://www.sanfoundry.com/java-programming-examples-computational-geometry-problems-algorithms/">Java - Computation Geometry</a></li>
+<li><a href="https://www.sanfoundry.com/java-programming-examples-set-string-problems-algorithms/">Java - Sets & Strings</a></li>
+<li><a href="https://www.sanfoundry.com/java-programming-examples-data-structures/">Java - Data-Structures</a></li>
+<li><a href="https://www.sanfoundry.com/java-programming-examples-collection-api/">Java - Collection API Problems</a></li>
+</div>
+<span class="collapseomatic " id="id5f40858e481b4"  tabindex="" title="Python Problems"    >Python Problems</span><div id="target-id5f40858e481b4" class="collapseomatic_content ">
+<li><a href="https://www.sanfoundry.com/python-problems-solutions/">Python Problems</a></li>
+</div>
+<span class="collapseomatic " id="id5f40858e481bf"  tabindex="" title="Dynamic Programming"    >Dynamic Programming</span><div id="target-id5f40858e481bf" class="collapseomatic_content ">
+<li><a href="https://www.sanfoundry.com/dynamic-programming-problems-solutions/">Dynamic Programming</a></li>
+</div>
+<span class="collapseomatic " id="id5f40858e481c9"  tabindex="" title="Data Structures MCQs"    >Data Structures MCQs</span><div id="target-id5f40858e481c9" class="collapseomatic_content ">
+<li><a href="https://www.sanfoundry.com/1000-data-structure-questions-answers/">Data Structures I</a></li>
+<li><a href="https://www.sanfoundry.com/1000-data-structures-algorithms-ii-questions-answers/">Data Structures II</a></li>
+</div>
+<span class="collapseomatic " id="id5f40858e481d5"  tabindex="" title="Programming Language MCQs"    >Programming Language MCQs</span><div id="target-id5f40858e481d5" class="collapseomatic_content ">
+<li><a href="https://www.sanfoundry.com/1000-python-questions-answers/">Python MCQs</a></li>
+<li><a href="https://www.sanfoundry.com/java-questions-answers-freshers-experienced/">Java MCQs</a></li>
+<li><a href="https://www.sanfoundry.com/c-interview-questions-answers/">C MCQs</a></li>
+<li><a href="https://www.sanfoundry.com/cplusplus-interview-questions-answers/">C++ MCQs</a></li>
+<li><a href="https://www.sanfoundry.com/csharp-questions-answers/">C# MCQs</a></li>
+<li><a href="https://www.sanfoundry.com/technical-interview-questions/">Linux MCQs</a></li>
+<li><a href="https://www.sanfoundry.com/php-questions-answers/">PHP Questions</a></li>
+</div>
+<span class="collapseomatic " id="id5f40858e481e1"  tabindex="" title="C Programming Examples"    >C Programming Examples</span><div id="target-id5f40858e481e1" class="collapseomatic_content ">
+<li><a href="https://www.sanfoundry.com/simple-c-programs/">Simple C Programs</a></li>
+<li><a href="https://www.sanfoundry.com/c-programming-examples-arrays/">C - Arrays</a></li>
+<li><a href="https://www.sanfoundry.com/c-programming-examples-matrix/">C - Matrix</a></li>
+<li><a href="https://www.sanfoundry.com/c-programming-examples-strings/">C - Strings</a></li>
+<li><a href="https://www.sanfoundry.com/c-programming-examples-bitwise-operations/">C - Bitwise Operations</a></li>
+<li><a href="https://www.sanfoundry.com/c-programming-examples-linked-list/">C - Linked Lists</a></li>
+<li><a href="https://www.sanfoundry.com/c-programming-examples-stacks/">C - Stacks & Queues</a></li>
+<li><a href="https://www.sanfoundry.com/c-programming-examples-searching-sorting/">C - Searching & Sorting</a></li>
+<li><a href="https://www.sanfoundry.com/c-programming-examples-on-trees/">C - Trees</a></li>
+<li><a href="https://www.sanfoundry.com/c-programming-examples-strings/">C - Strings</a></li>
+<li><a href="https://www.sanfoundry.com/c-programming-examples-file-handling/">C - File Handling</a></li>
+<li><a href="https://www.sanfoundry.com/c-programming-examples-mathematical-functions/">C - Mathematical Functions</a></li>
+<li><a href="https://www.sanfoundry.com/c-programming-examples-on-puzzles-games/">C - Puzzles & Games</a></li>
+<li><a href="https://www.sanfoundry.com/c-programming-examples-recursion/">C Programs - Recursion</a></li>
+<li><a href="https://www.sanfoundry.com/c-programming-examples-without-using-recursion/">C Programs - No Recursion</a></li>
+</div>
+</div>
+<div style="margin: 50px 0px"> </div>
+</div></aside>			</div><!-- .inside-navigation -->
+		</nav><!-- #site-navigation -->
+
+					<div class="slideout-overlay">
+									<button class="slideout-exit ">
+												<span class="screen-reader-text">Close</span>
+					</button>
+							</div>
+		<script type='text/javascript'>
+var colomatduration = 'fast';
+var colomatslideEffect = 'slideFade';
+var colomatpauseInit = '';
+var colomattouchstart = '';
+</script>
+
+
+
+<script type='text/javascript'>
+/* <![CDATA[ */
+var offSide = {"side":"left"};
+/* ]]> */
+</script>
+
+
+<!--[if lte IE 11]>
+<script type='text/javascript' src='https://www.sanfoundry.com/wp-content/themes/generatepress/js/classList.min.js'></script>
+<![endif]-->
+
+
+<script type='text/javascript'>
+/* <![CDATA[ */
+var generatepressNavSearch = {"open":"Open Search Bar","close":"Close Search Bar"};
+/* ]]> */
+</script>
+
+
+
+<script type='text/javascript'>
+/* <![CDATA[ */
+var q2w3_sidebar_options = [{"sidebar":"sidebar-1","margin_top":10,"margin_bottom":10,"stop_id":"footer-widgets","screen_max_width":0,"screen_max_height":0,"width_inherit":false,"refresh_interval":1500,"window_load_hook":false,"disable_mo_api":false,"widgets":["text-296"]},{"sidebar":"sidebar-2","margin_top":10,"margin_bottom":10,"stop_id":"footer-widgets","screen_max_width":0,"screen_max_height":0,"width_inherit":false,"refresh_interval":1500,"window_load_hook":false,"disable_mo_api":false,"widgets":["text-292"]}];
+/* ]]> */
+</script>
+
+
+
+<script defer src="https://www.sanfoundry.com/wp-content/cache/autoptimize/js/autoptimize_48bae1f680bde4808180d69f55424c9a.js"></script></body>
+</html>
+
+<!-- Dynamic page generated in 1.318 seconds. -->
+<!-- Cached page generated by WP-Super-Cache on 2020-08-22 08:10:14 -->
+
+<!-- Compression = gzip -->

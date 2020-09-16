@@ -1,0 +1,1226 @@
+.clearfix {
+  *zoom: 1;
+}
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.clearfix:after {
+  clear: both;
+}
+.hide-text {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+.input-block-level {
+  display: block;
+  width: 100%;
+  min-height: 30px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+#khanType {
+  /* Used to style the topic title on a topic page, eg
+  "Introduction to algebra" on /math/algebra/introduction-to-algebra.
+  Also used for the tutorial title on tutorial landing pages.
+  Not restricted to styling the titles of "Topic" entities. */
+}
+.vertical-shadow {
+  border: 1px solid #ccc;
+  border-bottom: 1px solid #aaa;
+  box-shadow: 0 1px 3px #ccc;
+}
+html.page-container-min-width-zero body,
+html.page-container-min-width-zero #page-container {
+  min-width: 0;
+}
+/* Fall back colors? Eg educator, talks & interviews */
+/* Shared rules, that are always included, related to responsiveness. */
+.hidden {
+  display: none;
+  visibility: hidden;
+}
+.visible-phone {
+  display: none !important;
+}
+.visible-tablet {
+  display: none !important;
+}
+.hidden-desktop {
+  display: none !important;
+}
+@media screen and (max-width: 480px) {
+  .visible-phone {
+    display: inherit !important;
+  }
+  .hidden-phone {
+    display: none !important;
+  }
+  .hidden-desktop {
+    display: inherit !important;
+  }
+  .visible-desktop {
+    display: none !important;
+  }
+}
+.visible-on-responsive-page {
+  display: block !important;
+}
+@media screen and (max-width: 480px) {
+  body,
+  #page-container {
+    min-width: 0;
+  }
+  #top-header-container .sitewide-navigation .nav-subheader .nav-link,
+  #top-header-container .nav-search-box {
+    display: none;
+  }
+  #top-header-container .sitewide-navigation {
+    display: block;
+    width: 100%;
+  }
+  #top-header-container .nav-subheader {
+    display: block;
+  }
+  #top-header-container #header-logo {
+    display: block;
+    float: none;
+  }
+  #top-header-container #page_auth {
+    font-size: 90%;
+    position: absolute;
+    right: 0;
+  }
+  #top-header-container #page_auth #user-info > * {
+    display: none;
+  }
+  #top-header-container #page_auth #user-info a {
+    padding: 0 8px;
+    border-right: none;
+  }
+  #top-header-container #page_auth #user-info a.highlight {
+    display: inline;
+  }
+  .ui-autocomplete.ui-menu {
+    max-width: 360px;
+  }
+  .ui-autocomplete.ui-menu .ui-menu-item a {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .container {
+    width: auto;
+  }
+  .row,
+  .thumbnails {
+    margin-left: 0;
+  }
+  .row-fluid {
+    margin-bottom: 0;
+  }
+  .row-fluid [class*="span"] {
+    display: block;
+    float: none;
+    margin-left: 0;
+    margin-bottom: 20px;
+    width: auto;
+  }
+  .row-fluid .span-one-third {
+    margin: 0 auto;
+    width: 300px;
+  }
+}
+@media screen and (max-width: 320px) {
+  .ui-autocomplete.ui-menu {
+    max-width: 280px;
+  }
+}
+@media screen and (max-width: 567px) {
+  .pure-visible-sm {
+    display: none !important;
+  }
+  .pure-visible-md {
+    display: none !important;
+  }
+  .pure-visible-lg {
+    display: none !important;
+  }
+  .pure-visible-xl {
+    display: none !important;
+  }
+  .pure-hidden-xs {
+    display: none !important;
+  }
+  .pure-visible-xs {
+    display: block !important;
+  }
+}
+@media screen and (min-width: 568px) and (max-width: 767px) {
+  .pure-visible-xs {
+    display: none !important;
+  }
+  .pure-visible-md {
+    display: none !important;
+  }
+  .pure-visible-lg {
+    display: none !important;
+  }
+  .pure-visible-xl {
+    display: none !important;
+  }
+  .pure-hidden-sm {
+    display: none !important;
+  }
+  .pure-visible-sm {
+    display: block !important;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .pure-visible-xs {
+    display: none !important;
+  }
+  .pure-visible-sm {
+    display: none !important;
+  }
+  .pure-visible-lg {
+    display: none !important;
+  }
+  .pure-visible-xl {
+    display: none !important;
+  }
+  .pure-hidden-md {
+    display: none !important;
+  }
+  .pure-visible-md {
+    display: block !important;
+  }
+}
+@media screen and (min-width: 1024px) and (max-width: 1199px) {
+  .pure-visible-xs {
+    display: none !important;
+  }
+  .pure-visible-sm {
+    display: none !important;
+  }
+  .pure-visible-md {
+    display: none !important;
+  }
+  .pure-visible-xl {
+    display: none !important;
+  }
+  .pure-hidden-lg {
+    display: none !important;
+  }
+  .pure-visible-lg {
+    display: block !important;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .pure-visible-xs {
+    display: none !important;
+  }
+  .pure-visible-sm {
+    display: none !important;
+  }
+  .pure-visible-md {
+    display: none !important;
+  }
+  .pure-visible-lg {
+    display: none !important;
+  }
+  .pure-hidden-xl {
+    display: none !important;
+  }
+  .pure-visible-xl {
+    display: block !important;
+  }
+}
+.pure-g [class*="pure-u"] {
+  font-family: inherit;
+}
+.responsive-img {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+}
+.pure-g.pure-g--gutter {
+  margin-left: -2.56410256%;
+}
+.pure-g.pure-g--gutter > [class*=pure-u] {
+  box-sizing: border-box;
+  padding-left: 2.56410256%;
+}
+.lihp-badges .pure-g.pure-g--gutter {
+  margin-left: 0;
+}
+.lihp-badges .pure-g.pure-g--gutter > [class*=pure-u] {
+  padding-left: 0;
+  padding-right: 2.56410256%;
+}
+/* Interactive transcript widget */
+.subtitles-container {
+  background: #fff;
+  display: none;
+  clear: both;
+  margin: 10px 0;
+  padding: 5px 0;
+  border: 1px solid #bbb;
+  box-shadow: inset 0 0 10px #CCC;
+}
+.subtitles {
+  max-height: 200px;
+  padding: 0 5px;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  /* JavaScript needs the child element's offsetTop relative to .subtitles */
+  position: relative;
+}
+.subtitles a,
+.subtitles a:visited:focus,
+.subtitles a:link:focus {
+  color: #333;
+  display: flex;
+  text-decoration: none;
+  line-height: 1.6em;
+  padding: 0 5px;
+}
+.subtitles a[data-fmttime]:before {
+  content: attr(data-fmttime);
+  color: #759243;
+  min-width: 40px;
+  padding-right: 8px;
+}
+.subtitles a:hover:before {
+  color: #fafafa;
+}
+.subtitles .active {
+  background-color: #d3ddb6;
+  font-weight: bold;
+}
+.subtitles li:hover,
+.subtitles a:hover,
+.subtitles a:visited:hover,
+.subtitles a:link:hover {
+  background-color: #9db63b;
+  color: #fafafa;
+  text-decoration: none;
+}
+/* Discussion */
+.video-feedback-container {
+  color: #555;
+  margin-bottom: 10px;
+}
+.video-feedback-container .video-feedback {
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: normal;
+  line-height: 20px;
+  background: #fafafa;
+  border: 1px solid #ccc;
+  padding: 6px;
+  margin-bottom: 5px;
+}
+.video-feedback-container .video-feedback .video-feedback-question {
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: normal;
+  line-height: 20px;
+}
+.video-feedback-container .video-feedback .video-feedback-answers {
+  margin-top: 5px;
+}
+.video-feedback-container .video-feedback .answer-box {
+  color: #555;
+  font-size: 12px;
+}
+.video-feedback-container .submit {
+  float: right;
+}
+.video-feedback-container .close {
+  color: inherit;
+  font-family: inherit;
+  font-size: 22px;
+  position: relative;
+  right: 4px;
+  text-decoration: none;
+  top: -2px;
+}
+.video-discussion {
+  padding: 0 1% 0 10px;
+  position: relative;
+  margin-top: 10px;
+  margin-left: -10px;
+  min-height: 200px;
+  width: 65%;
+  float: left;
+}
+.tutorial-node-content .video-discussion .video-discussion-header,
+.tutorial-node-content .video-discussion .clarifications-tab,
+.tutorial-node-content .video-discussion .comments-tab,
+.tutorial-node-content .video-discussion .projectfeedback-tab,
+.tutorial-node-content .video-discussion .questions-tab,
+.tutorial-node-content .video-discussion .spin-offs-tab {
+  max-width: 587px;
+}
+.video-discussion .expand-discussions-button-container {
+  bottom: 0;
+  box-sizing: border-box;
+  display: none;
+  left: 0;
+  padding: 10px;
+  position: absolute;
+  width: 100%;
+  z-index: 20;
+}
+.video-discussion .expand-discussions-button {
+  background: #f7f7f7;
+  border: 1px solid #ddd;
+  color: #444;
+  display: block;
+  font-size: 16px;
+  padding: 10px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+@media screen and (max-width: 567px) {
+  .video-discussion {
+    background: #f7f7f7;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    margin: 0;
+    max-height: 500px;
+    min-height: 0 !important;
+    overflow: hidden;
+    padding: 10px;
+    transition: max-height 0.5s ease;
+  }
+  .video-discussion:after {
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 30%, #ffffff 100%);
+    bottom: 0;
+    content: '';
+    left: 0;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 10;
+  }
+  .video-discussion .expand-discussions-button-container {
+    display: block;
+  }
+  .video-discussion.discussions-expanded {
+    max-height: 23456px;
+  }
+  .video-discussion.discussions-expanded:after {
+    content: none;
+  }
+  .video-discussion.discussions-expanded .expand-discussions-button {
+    display: none;
+  }
+}
+.discussion-container.hide-meta-panels .discussion-list-sort {
+  float: none;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: normal;
+  line-height: 20px;
+  margin-bottom: 22px;
+  margin-left: -5px;
+}
+.discussion-container.hide-meta-panels .discussion-list-sort a.selected {
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: bold;
+  line-height: 20px;
+}
+.discussion-container.hide-meta-panels .video-discussion-header .tabrow {
+  text-align: left;
+  width: 100%;
+}
+.discussion-container.hide-meta-panels .video-discussion-header #guidelines-tab-header {
+  float: right;
+  line-height: 22px;
+}
+.discussion-container.hide-meta-panels .video-discussion-header #report-a-mistake-tab-header {
+  float: right;
+  line-height: 22px;
+  margin-right: 0;
+  padding-right: 0;
+}
+.discussion-container.hide-meta-panels .guidelines .main-discussion-guidelines,
+.discussion-container.hide-meta-panels .report-a-mistake .main-discussion-guidelines {
+  display: block;
+  width: 100%;
+}
+.video-discussion-header {
+  border-bottom: 1px solid #ccc;
+  height: 20px;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+}
+.video-discussion-header a {
+  color: #555;
+  text-decoration: none;
+}
+.video-discussion-header .discussion-list-sort {
+  float: right;
+}
+.video-discussion-header .tabrow {
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: normal;
+  line-height: 20px;
+  line-height: 24px;
+  float: left;
+  margin: 0;
+  padding: 0;
+}
+.video-discussion-header .tabrow a {
+  text-decoration: none;
+}
+.video-discussion-header .tabrow li {
+  line-height: 22px;
+  margin-left: -10px;
+  margin-right: 10px;
+}
+.video-discussion-header .tabrow li.selected {
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: bold;
+  line-height: 20px;
+}
+/* Community Guidelines */
+.discussion-guidelines {
+  color: #888888;
+  font-size: 12px;
+  line-height: 1.7;
+  float: left;
+  margin-bottom: 15px;
+  margin-top: 10px;
+  width: 34%;
+}
+.discussion-guidelines p {
+  margin: 5px 0;
+  font-size: 12px;
+}
+.discussion-guidelines p.discussion-guidelines-example {
+  font-size: 11px;
+  color: #777;
+  font-style: italic;
+  line-height: 18px;
+}
+.discussion-guidelines ul {
+  list-style-type: none;
+  margin-left: 5px;
+}
+.discussion-guidelines li:before {
+  color: #cccccc;
+  content: "\2022   ";
+}
+.discussion-guidelines .discussion-guidelines-link {
+  display: block;
+  margin-left: 15px;
+}
+.discussion-guidelines-header {
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: normal;
+  line-height: 20px;
+  border-bottom: 1px solid #ccc;
+  color: #555;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+  height: 20px;
+}
+.discussion-guidelines-subheader {
+  color: #555;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 20px;
+  margin-bottom: 5px;
+  margin-top: 15px;
+}
+.discussion-guidelines-subheader.example-subheader {
+  border-bottom: 1px solid #eee;
+}
+.discussion-guidelines-separator {
+  border-bottom: 1px solid #ccc;
+  margin: 20px 0;
+}
+/* This file contains all css used for the positioning of the points pill, gear
+ * menu, share menu, and info tooltip that appears below a video.
+ */
+.scratchpad-playbar-area .dropdown-menu {
+  /* todo(dmnd) why is this needed? */
+  margin-top: -1px;
+  /* todo(dmnd) these styles are quite generic and may be better located
+    elsewhere */
+}
+.scratchpad-playbar-area .dropdown-menu li > a,
+.scratchpad-playbar-area .dropdown-menu li > label {
+  display: block;
+  padding: 2px 8px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.scratchpad-playbar-area .dropdown-menu li > a .link-text,
+.scratchpad-playbar-area .dropdown-menu li > label .link-text {
+  margin-right: 10px;
+}
+.scratchpad-playbar-area .dropdown-menu li input {
+  margin: 6px 2px;
+}
+.scratchpad-playbar-area .dropdown-menu li [class^="icon-"],
+.scratchpad-playbar-area .dropdown-menu li [class*=" icon-"] {
+  width: 20px;
+  margin-right: 6px;
+}
+.scratchpad-playbar-area .dropdown-menu li .icon-large:before {
+  width: auto;
+}
+.scratchpad-playbar-area .dropdown-menu .disabled,
+.scratchpad-playbar-area .dropdown-menu .disabled label,
+.scratchpad-playbar-area .dropdown-menu .disabled a {
+  color: #ccc !important;
+  cursor: not-allowed;
+}
+.scratchpad-playbar-area .dropdown-menu input[disabled] {
+  cursor: not-allowed;
+}
+/* This contains all layout (presumably) for video pages. */
+/**
+ * Don't force minimum screen or video width
+ * to allow responsive resizing without cutting off the video
+ */
+body,
+#page-container {
+  min-width: 0;
+}
+div.video {
+  min-width: 0px;
+}
+.video-container {
+  position: relative;
+}
+.video-container .video-title {
+  font-family: inherit;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 1.2;
+  padding: 15px;
+}
+#topics {
+  display: block;
+  float: left;
+}
+.youtube-video {
+  padding-bottom: 10px;
+  position: relative;
+}
+.youtube-video object {
+  display: block;
+}
+.player-container iframe {
+  display: block;
+}
+@media screen and (max-width: 567px) {
+  #tutorial-page {
+    width: 100%;
+  }
+  #tutorial-page .tutorial-nav {
+    display: block;
+    background-color: white;
+    max-width: inherit;
+    min-width: 0;
+    position: static;
+    width: auto;
+  }
+  #tutorial-page .tutorial-nav .topic {
+    width: auto;
+  }
+  #tutorial-page .tutorial-nav .nav-container {
+    position: static;
+    width: auto;
+  }
+  #tutorial-page .tutorial-nav .slimScrollDiv,
+  #tutorial-page .tutorial-nav .js-touch-scroll,
+  #tutorial-page .tutorial-nav .topic-nav-content {
+    display: none;
+  }
+  #tutorial-page .tutorial-content {
+    border-left: none;
+    display: block;
+  }
+  #tutorial-page .discussion-guidelines {
+    display: none;
+  }
+  #tutorial-page .video-discussion {
+    width: 100%;
+  }
+  #tutorial-page .video-discussion .questions-tab,
+  #tutorial-page .video-discussion .comments-tab {
+    max-width: none;
+  }
+  #tutorial-page .tutorial-content .title-header {
+    margin-right: 0;
+  }
+}
+.ka-video-player {
+  color: #444444;
+}
+.ka-video-player.video-ended {
+  padding-bottom: 20px;
+}
+.ka-video-player .centered-when-windowed {
+  box-sizing: border-box;
+  margin: 0 auto;
+  max-width: 1000px;
+}
+.ka-video-player.fullscreen {
+  background: black;
+  height: 100%;
+  width: 100%;
+}
+.ka-video-player.fullscreen .centered-when-windowed {
+  max-width: none;
+}
+.ka-video-player.fullscreen .ka-video-player-container {
+  height: 100%;
+  width: 100%;
+}
+.ka-video-player.fullscreen .video-spacer-container {
+  height: 100% !important;
+  width: 100%;
+}
+.ka-video-player.fullscreen .ka-player-iframe {
+  height: 100%;
+  max-width: none;
+  width: 100%;
+}
+.ka-video-player.fullscreen .video-player-controls {
+  opacity: 0.95;
+  transition: opacity 0.1s ease-out;
+}
+.ka-video-player.fullscreen .video-player-controls.faded-out {
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+}
+.ka-video-player-container {
+  position: relative;
+}
+.ka-video-player-container .ka-player-iframe {
+  width: 100%;
+}
+/* Interactive transcript (from interactive-transcripts.less) */
+.new-subtitles-container {
+  border: none;
+  display: block;
+  height: 0px;
+  margin: 0 auto;
+  overflow: hidden;
+  padding: 0;
+  transition: all 0.2s ease-out;
+}
+.new-subtitles-container.open {
+  height: 200px;
+  padding: 5px 0;
+  border: 1px solid #bbb;
+  opacity: 1;
+}
+.new-subtitles-container .subtitle-time {
+  display: inline-block;
+  padding: 0 5px;
+  width: 35px;
+}
+.new-subtitles-container .subtitle-text {
+  color: #333;
+}
+.new-subtitles-container li.active .subtitle-time,
+.new-subtitles-container a.active .subtitle-time,
+.new-subtitles-container a:link.active .subtitle-time,
+.new-subtitles-container a:visited.active .subtitle-time,
+.new-subtitles-container li:hover .subtitle-time,
+.new-subtitles-container a:hover .subtitle-time,
+.new-subtitles-container a:link:hover .subtitle-time,
+.new-subtitles-container a:visited:hover .subtitle-time,
+.new-subtitles-container li:focus .subtitle-time,
+.new-subtitles-container a:focus .subtitle-time,
+.new-subtitles-container a:link:focus .subtitle-time,
+.new-subtitles-container a:visited:focus .subtitle-time,
+.new-subtitles-container li.active .subtitle-text,
+.new-subtitles-container a.active .subtitle-text,
+.new-subtitles-container a:link.active .subtitle-text,
+.new-subtitles-container a:visited.active .subtitle-text,
+.new-subtitles-container li:hover .subtitle-text,
+.new-subtitles-container a:hover .subtitle-text,
+.new-subtitles-container a:link:hover .subtitle-text,
+.new-subtitles-container a:visited:hover .subtitle-text,
+.new-subtitles-container li:focus .subtitle-text,
+.new-subtitles-container a:focus .subtitle-text,
+.new-subtitles-container a:link:focus .subtitle-text,
+.new-subtitles-container a:visited:focus .subtitle-text {
+  color: white;
+}
+.video .content-tags {
+  border-radius: 5px;
+  padding-bottom: 5px;
+  padding-top: 10px;
+}
+.video .content-tags .heading {
+  display: inline-block;
+  margin-right: 4px;
+}
+.video .content-tags a {
+  padding-right: 4px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.video .content-tags a:after {
+  content: ",";
+}
+.video .content-tags a:last-child:after {
+  content: "";
+}
+.video .content-tags a:hover {
+  text-decoration: underline;
+}
+.video .content-tags.tags-light-color a {
+  color: #a7cf5b;
+}
+/**
+ * React Select
+ * ============
+ * Created by Jed Watson and Joss Mackison for KeystoneJS, http://www.keystonejs.com/
+ * https://twitter.com/jedwatson https://twitter.com/jossmackison https://twitter.com/keystonejs
+ * MIT License: https://github.com/JedWatson/react-select
+*/
+.Select {
+  position: relative;
+}
+.Select input::-webkit-contacts-auto-fill-button,
+.Select input::-webkit-credentials-auto-fill-button {
+  display: none !important;
+}
+.Select input::-ms-clear {
+  display: none !important;
+}
+.Select input::-ms-reveal {
+  display: none !important;
+}
+.Select,
+.Select div,
+.Select input,
+.Select span {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.Select.is-disabled .Select-arrow-zone {
+  cursor: default;
+  pointer-events: none;
+  opacity: 0.35;
+}
+.Select.is-disabled > .Select-control {
+  background-color: #f9f9f9;
+}
+.Select.is-disabled > .Select-control:hover {
+  box-shadow: none;
+}
+.Select.is-open > .Select-control {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  background: #fff;
+  border-color: #b3b3b3 #ccc #d9d9d9;
+}
+.Select.is-open > .Select-control .Select-arrow {
+  top: -2px;
+  border-color: transparent transparent #999;
+  border-width: 0 5px 5px;
+}
+.Select.is-searchable.is-open > .Select-control {
+  cursor: text;
+}
+.Select.is-searchable.is-focused:not(.is-open) > .Select-control {
+  cursor: text;
+}
+.Select.is-focused > .Select-control {
+  background: #fff;
+}
+.Select.is-focused:not(.is-open) > .Select-control {
+  border-color: #007eff;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 0 3px rgba(0, 126, 255, 0.1);
+  background: #fff;
+}
+.Select.has-value.is-clearable.Select--single > .Select-control .Select-value {
+  padding-right: 42px;
+}
+.Select.has-value.Select--single > .Select-control .Select-value .Select-value-label,
+.Select.has-value.is-pseudo-focused.Select--single > .Select-control .Select-value .Select-value-label {
+  color: #333;
+}
+.Select.has-value.Select--single > .Select-control .Select-value a.Select-value-label,
+.Select.has-value.is-pseudo-focused.Select--single > .Select-control .Select-value a.Select-value-label {
+  cursor: pointer;
+  text-decoration: none;
+}
+.Select.has-value.Select--single > .Select-control .Select-value a.Select-value-label:hover,
+.Select.has-value.is-pseudo-focused.Select--single > .Select-control .Select-value a.Select-value-label:hover,
+.Select.has-value.Select--single > .Select-control .Select-value a.Select-value-label:focus,
+.Select.has-value.is-pseudo-focused.Select--single > .Select-control .Select-value a.Select-value-label:focus {
+  color: #007eff;
+  outline: none;
+  text-decoration: underline;
+}
+.Select.has-value.Select--single > .Select-control .Select-value a.Select-value-label:focus,
+.Select.has-value.is-pseudo-focused.Select--single > .Select-control .Select-value a.Select-value-label:focus {
+  background: #fff;
+}
+.Select.has-value.is-pseudo-focused .Select-input {
+  opacity: 0;
+}
+.Select.is-open .Select-arrow,
+.Select .Select-arrow-zone:hover > .Select-arrow {
+  border-top-color: #666;
+}
+.Select.Select--rtl {
+  direction: rtl;
+  text-align: right;
+}
+.Select-control {
+  background-color: #fff;
+  border-color: #d9d9d9 #ccc #b3b3b3;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  color: #333;
+  cursor: default;
+  display: table;
+  border-spacing: 0;
+  border-collapse: separate;
+  height: 36px;
+  outline: none;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+.Select-control:hover {
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
+}
+.Select-control .Select-input:focus {
+  outline: none;
+  background: #fff;
+}
+.Select-placeholder,
+.Select--single > .Select-control .Select-value {
+  bottom: 0;
+  color: #aaa;
+  left: 0;
+  line-height: 34px;
+  padding-left: 10px;
+  padding-right: 10px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.Select-input {
+  height: 34px;
+  padding-left: 10px;
+  padding-right: 10px;
+  vertical-align: middle;
+}
+.Select-input > input {
+  width: 100%;
+  background: none transparent;
+  border: 0 none;
+  box-shadow: none;
+  cursor: default;
+  display: inline-block;
+  font-family: inherit;
+  font-size: inherit;
+  margin: 0;
+  outline: none;
+  line-height: 17px;
+  /* For IE 8 compatibility */
+  padding: 8px 0 12px;
+  /* For IE 8 compatibility */
+  -webkit-appearance: none;
+}
+.is-focused .Select-input > input {
+  cursor: text;
+}
+.has-value.is-pseudo-focused .Select-input {
+  opacity: 0;
+}
+.Select-control:not(.is-searchable) > .Select-input {
+  outline: none;
+}
+.Select-loading-zone {
+  cursor: pointer;
+  display: table-cell;
+  position: relative;
+  text-align: center;
+  vertical-align: middle;
+  width: 16px;
+}
+.Select-loading {
+  -webkit-animation: Select-animation-spin 400ms infinite linear;
+  -o-animation: Select-animation-spin 400ms infinite linear;
+  animation: Select-animation-spin 400ms infinite linear;
+  width: 16px;
+  height: 16px;
+  box-sizing: border-box;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  border-right-color: #333;
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+}
+.Select-clear-zone {
+  -webkit-animation: Select-animation-fadeIn 200ms;
+  -o-animation: Select-animation-fadeIn 200ms;
+  animation: Select-animation-fadeIn 200ms;
+  color: #999;
+  cursor: pointer;
+  display: table-cell;
+  position: relative;
+  text-align: center;
+  vertical-align: middle;
+  width: 17px;
+}
+.Select-clear-zone:hover {
+  color: #D0021B;
+}
+.Select-clear {
+  display: inline-block;
+  font-size: 18px;
+  line-height: 1;
+}
+.Select--multi .Select-clear-zone {
+  width: 17px;
+}
+.Select-arrow-zone {
+  cursor: pointer;
+  display: table-cell;
+  position: relative;
+  text-align: center;
+  vertical-align: middle;
+  width: 25px;
+  padding-right: 5px;
+}
+.Select--rtl .Select-arrow-zone {
+  padding-right: 0;
+  padding-left: 5px;
+}
+.Select-arrow {
+  border-color: #999 transparent transparent;
+  border-style: solid;
+  border-width: 5px 5px 2.5px;
+  display: inline-block;
+  height: 0;
+  width: 0;
+  position: relative;
+}
+.Select-control > *:last-child {
+  padding-right: 5px;
+}
+.Select--multi .Select-multi-value-wrapper {
+  display: inline-block;
+}
+.Select .Select-aria-only {
+  position: absolute;
+  display: inline-block;
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  clip: rect(0, 0, 0, 0);
+  overflow: hidden;
+  float: left;
+}
+@-webkit-keyframes Select-animation-fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes Select-animation-fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.Select-menu-outer {
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-top-color: #e6e6e6;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
+  box-sizing: border-box;
+  margin-top: -1px;
+  max-height: 200px;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  width: 100%;
+  z-index: 1;
+  -webkit-overflow-scrolling: touch;
+}
+.Select-menu {
+  max-height: 198px;
+  overflow-y: auto;
+}
+.Select-option {
+  box-sizing: border-box;
+  background-color: #fff;
+  color: #666666;
+  cursor: pointer;
+  display: block;
+  padding: 8px 10px;
+}
+.Select-option:last-child {
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+.Select-option.is-selected {
+  background-color: #f5faff;
+  /* Fallback color for IE 8 */
+  background-color: rgba(0, 126, 255, 0.04);
+  color: #333;
+}
+.Select-option.is-focused {
+  background-color: #ebf5ff;
+  /* Fallback color for IE 8 */
+  background-color: rgba(0, 126, 255, 0.08);
+  color: #333;
+}
+.Select-option.is-disabled {
+  color: #cccccc;
+  cursor: default;
+}
+.Select-noresults {
+  box-sizing: border-box;
+  color: #999999;
+  cursor: default;
+  display: block;
+  padding: 8px 10px;
+}
+.Select--multi .Select-input {
+  vertical-align: middle;
+  margin-left: 10px;
+  padding: 0;
+}
+.Select--multi.Select--rtl .Select-input {
+  margin-left: 0;
+  margin-right: 10px;
+}
+.Select--multi.has-value .Select-input {
+  margin-left: 5px;
+}
+.Select--multi .Select-value {
+  background-color: #ebf5ff;
+  /* Fallback color for IE 8 */
+  background-color: rgba(0, 126, 255, 0.08);
+  border-radius: 2px;
+  border: 1px solid #c2e0ff;
+  /* Fallback color for IE 8 */
+  border: 1px solid rgba(0, 126, 255, 0.24);
+  color: #007eff;
+  display: inline-block;
+  font-size: 0.9em;
+  line-height: 1.4;
+  margin-left: 5px;
+  margin-top: 5px;
+  vertical-align: top;
+}
+.Select--multi .Select-value-icon,
+.Select--multi .Select-value-label {
+  display: inline-block;
+  vertical-align: middle;
+}
+.Select--multi .Select-value-label {
+  border-bottom-right-radius: 2px;
+  border-top-right-radius: 2px;
+  cursor: default;
+  padding: 2px 5px;
+}
+.Select--multi a.Select-value-label {
+  color: #007eff;
+  cursor: pointer;
+  text-decoration: none;
+}
+.Select--multi a.Select-value-label:hover {
+  text-decoration: underline;
+}
+.Select--multi .Select-value-icon {
+  cursor: pointer;
+  border-bottom-left-radius: 2px;
+  border-top-left-radius: 2px;
+  border-right: 1px solid #c2e0ff;
+  /* Fallback color for IE 8 */
+  border-right: 1px solid rgba(0, 126, 255, 0.24);
+  padding: 1px 5px 3px;
+}
+.Select--multi .Select-value-icon:hover,
+.Select--multi .Select-value-icon:focus {
+  background-color: #d8eafd;
+  /* Fallback color for IE 8 */
+  background-color: rgba(0, 113, 230, 0.08);
+  color: #0071e6;
+}
+.Select--multi .Select-value-icon:active {
+  background-color: #c2e0ff;
+  /* Fallback color for IE 8 */
+  background-color: rgba(0, 126, 255, 0.24);
+}
+.Select--multi.Select--rtl .Select-value {
+  margin-left: 0;
+  margin-right: 5px;
+}
+.Select--multi.Select--rtl .Select-value-icon {
+  border-right: none;
+  border-left: 1px solid #c2e0ff;
+  /* Fallback color for IE 8 */
+  border-left: 1px solid rgba(0, 126, 255, 0.24);
+}
+.Select--multi.is-disabled .Select-value {
+  background-color: #fcfcfc;
+  border: 1px solid #e3e3e3;
+  color: #333;
+}
+.Select--multi.is-disabled .Select-value-icon {
+  cursor: not-allowed;
+  border-right: 1px solid #e3e3e3;
+}
+.Select--multi.is-disabled .Select-value-icon:hover,
+.Select--multi.is-disabled .Select-value-icon:focus,
+.Select--multi.is-disabled .Select-value-icon:active {
+  background-color: #fcfcfc;
+}
+@keyframes Select-animation-spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+@-webkit-keyframes Select-animation-spin {
+  to {
+    -webkit-transform: rotate(1turn);
+  }
+}
+
+
